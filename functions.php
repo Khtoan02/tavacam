@@ -46,6 +46,6 @@ function tavacam_scripts()
     wp_enqueue_style('tavacam-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), null);
 
     // Enqueue Lucide Icons
-    wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest', array(), null, true);
+    wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest', array(), null, false);
 }
 add_action('wp_enqueue_scripts', 'tavacam_scripts');

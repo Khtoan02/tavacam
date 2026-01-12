@@ -1,5 +1,5 @@
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="light">
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
@@ -7,9 +7,10 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -22,10 +23,34 @@
             }
         }
     </script>
+    <script>
+        // Check local storage for theme preference or default to light
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            // User specifically asked to default to light mode, but let's respect previous choice if explicitly set.
+            // If nothing set, default to light as requested.
+            if (localStorage.theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
 
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+    </script>
     <?php wp_head(); ?>
     <style>
         /* Scrolled State Overrides */
+        /* Light Mode Scrolled */
         #masthead.is-scrolled {
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
@@ -33,6 +58,13 @@
             box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
             border-bottom-color: #f3f4f6;
             /* gray-100 */
+        }
+
+        /* Dark Mode Scrolled */
+        .dark #masthead.is-scrolled {
+            background-color: rgba(15, 23, 42, 0.95);
+            /* slate-900 */
+            border-bottom-color: rgba(255, 255, 255, 0.05);
         }
 
         #masthead.is-scrolled .top-bar {
@@ -44,25 +76,48 @@
             overflow: hidden;
         }
 
+        /* Logo Box */
         #masthead.is-scrolled .logo-box {
             background-color: #0f172a;
             /* slate-900 */
             color: white;
         }
 
+        .dark #masthead.is-scrolled .logo-box {
+            background-color: white;
+            color: #0f172a;
+        }
+
+        /* Logo Text */
         #masthead.is-scrolled .logo-text-primary {
             color: #0f172a;
             /* slate-900 */
         }
 
+        .dark #masthead.is-scrolled .logo-text-primary {
+            color: white;
+        }
+
+        /* Logo Subtext */
         #masthead.is-scrolled .logo-subtext {
             color: #64748b;
             /* slate-500 */
         }
 
+        .dark #masthead.is-scrolled .logo-subtext {
+            color: #94a3b8;
+            /* slate-400 */
+        }
+
+        /* Nav Links */
         #masthead.is-scrolled .nav-link-item {
             color: #334155;
             /* slate-700 */
+        }
+
+        .dark #masthead.is-scrolled .nav-link-item {
+            color: #e2e8f0;
+            /* slate-200 */
         }
 
         #masthead.is-scrolled .nav-link-item:hover {
@@ -70,14 +125,25 @@
             /* orange-600 */
         }
 
+        /* Mobile Menu Btn */
         #masthead.is-scrolled .mobile-menu-btn {
             color: #0f172a;
             /* slate-900 */
         }
 
+        .dark #masthead.is-scrolled .mobile-menu-btn {
+            color: white;
+        }
+
+        /* Action Search Btn */
         #masthead.is-scrolled .action-search-btn {
             color: #64748b;
             /* slate-500 */
+        }
+
+        .dark #masthead.is-scrolled .action-search-btn {
+            color: #cbd5e1;
+            /* slate-300 */
         }
 
         #masthead.is-scrolled .action-search-btn:hover {
@@ -85,12 +151,13 @@
             /* slate-100 */
         }
 
-        /* Initial transparent state defaults (already in inline classes but enforced here if needed) */
-        /* ... */
+        .dark #masthead.is-scrolled .action-search-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 
-<body <?php body_class('bg-gray-50 text-gray-900 antialiased'); ?>>
+<body <?php body_class('bg-gray-50 text-gray-900 antialiased dark:bg-slate-950 dark:text-gray-100 transition-colors duration-300'); ?>>
     <?php wp_body_open(); ?>
 
     <div id="page" class="site min-h-screen flex flex-col">
@@ -98,33 +165,64 @@
             href="#primary"><?php esc_html_e('Skip to content', 'tavacam'); ?></a>
 
         <header id="masthead"
-            class="fixed top-0 z-50 w-full transition-all duration-300 bg-slate-900/80 backdrop-blur-md border-b border-white/10">
+            class="fixed top-0 z-50 w-full transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-slate-900/80 dark:border-white/10">
 
             <!-- Top Bar -->
             <div
-                class="top-bar transition-all duration-300 bg-slate-950 text-slate-400 py-2 text-[11px] border-b border-white/5 font-medium tracking-wide">
+                class="top-bar transition-all duration-300 bg-slate-100 text-slate-600 dark:bg-slate-950 dark:text-slate-400 py-2 text-[11px] border-b border-gray-200 dark:border-white/5 font-medium tracking-wide">
                 <div class="container mx-auto px-6 flex justify-between items-center">
                     <div class="flex items-center space-x-6">
-                        <a href="#" class="hover:text-white transition flex items-center gap-1.5 group/item">
+                        <a href="#"
+                            class="hover:text-orange-600 dark:hover:text-white transition flex items-center gap-1.5 group/item">
                             <i data-lucide="briefcase"
                                 class="w-3 h-3 text-orange-500 group-hover/item:text-orange-400"></i>
-                            <span>Kênh Doanh nghiệp (B2B)</span>
+                            <span
+                                class="border-b border-transparent group-hover/item:border-orange-600 dark:group-hover/item:border-white transition-all">Kênh
+                                Doanh nghiệp (B2B)</span>
                         </a>
-                        <span class="text-slate-700">|</span>
-                        <a href="#" class="hover:text-white transition flex items-center gap-1.5 group/item">
+                        <span class="text-slate-300 dark:text-slate-700">|</span>
+                        <a href="#"
+                            class="hover:text-blue-600 dark:hover:text-white transition flex items-center gap-1.5 group/item">
                             <i data-lucide="monitor" class="w-3 h-3 text-blue-500 group-hover/item:text-blue-400"></i>
-                            <span>Hệ sinh thái TavaLED</span>
+                            <span
+                                class="border-b border-transparent group-hover/item:border-blue-600 dark:group-hover/item:border-white transition-all">Hệ
+                                sinh thái TavaLED</span>
                         </a>
                     </div>
                     <div class="flex items-center space-x-6">
                         <a href="tel:19006600" class="hover:text-white transition font-bold text-orange-500">Hotline:
                             1900 6600</a>
                         <div class="w-px h-3 bg-slate-700"></div>
-                        <button class="flex items-center hover:text-white transition gap-1 uppercase">
-                            <i data-lucide="globe" class="w-3 h-3"></i>
-                            <span>Global (EN)</span>
-                            <i data-lucide="chevron-down" class="w-2.5 h-2.5"></i>
-                        </button>
+
+                        <!-- Language Dropdown -->
+                        <div class="relative group cursor-pointer z-[60]">
+                            <button class="flex items-center hover:text-white transition gap-1 uppercase"
+                                id="lang-toggle-btn">
+                                <span id="current-lang-flag" class="flex items-center justify-center"><i
+                                        data-lucide="globe" class="w-3 h-3"></i></span>
+                                <span id="current-lang-text">Global (EN)</span>
+                                <i data-lucide="chevron-down"
+                                    class="w-2.5 h-2.5 transition-transform group-hover:rotate-180"></i>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div
+                                class="absolute right-0 top-full pt-2 w-36 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0">
+                                <div
+                                    class="bg-white dark:bg-slate-800 rounded-md shadow-lg border border-gray-100 dark:border-gray-700 py-1 overflow-hidden">
+                                    <a href="javascript:void(0)" onclick="setLanguage('vn')"
+                                        class="block px-4 py-2 text-xs text-slate-700 dark:text-gray-200 hover:bg-orange-50 dark:hover:bg-white/10 hover:text-orange-600 dark:hover:text-white flex items-center gap-2">
+                                        <img src="https://flagcdn.com/w20/vn.png" width="14" alt="VN" class="shrink-0">
+                                        Vietnam (VN)
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="setLanguage('en')"
+                                        class="block px-4 py-2 text-xs text-slate-700 dark:text-gray-200 hover:bg-orange-50 dark:hover:bg-white/10 hover:text-orange-600 dark:hover:text-white flex items-center gap-2">
+                                        <img src="https://flagcdn.com/w20/us.png" width="14" alt="US" class="shrink-0">
+                                        Global (EN)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,21 +233,22 @@
 
                     <!-- 1. Logo Area -->
                     <div class="flex items-center z-50">
-                        <button class="lg:hidden mr-4 text-white mobile-menu-btn" id="mobile-menu-toggle">
+                        <button class="lg:hidden mr-4 text-slate-900 dark:text-white mobile-menu-btn"
+                            id="mobile-menu-toggle">
                             <i data-lucide="menu" class="w-6 h-6"></i>
                         </button>
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3 group">
                             <div
-                                class="logo-box relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-colors duration-300 bg-white text-slate-900">
+                                class="logo-box relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-colors duration-300 bg-slate-900 text-white dark:bg-white dark:text-slate-900">
                                 <i data-lucide="scan" class="w-6 h-6 text-orange-500" stroke-width="2.5"></i>
                             </div>
                             <div class="flex flex-col">
                                 <span
-                                    class="logo-text-primary text-2xl font-extrabold tracking-tight leading-none transition-colors uppercase text-white">
+                                    class="logo-text-primary text-2xl font-extrabold tracking-tight leading-none transition-colors uppercase text-slate-900 dark:text-white">
                                     TAVA<span class="text-orange-600">VISION</span>
                                 </span>
                                 <span
-                                    class="logo-subtext text-[9px] uppercase tracking-[0.25em] font-semibold mt-0.5 text-white/60">
+                                    class="logo-subtext text-[9px] uppercase tracking-[0.25em] font-semibold mt-0.5 text-slate-500 dark:text-white/60">
                                     AI Intelligence
                                 </span>
                             </div>
@@ -161,64 +260,64 @@
 
                         <!-- Link: Trang chủ -->
                         <a href="<?php echo esc_url(home_url('/')); ?>"
-                            class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full text-white/90 hover:text-white hover:bg-orange-500/10">
+                            class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full text-slate-700 hover:text-orange-600 hover:bg-orange-50 dark:text-white/90 dark:hover:text-white dark:hover:bg-orange-500/10">
                             Trang chủ
                         </a>
 
                         <!-- MEGA MENU: Sản phẩm -->
                         <div class="group h-full flex items-center">
                             <button
-                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-white/90 group-hover:text-white group-hover:bg-orange-500/10">
+                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-slate-700 group-hover:text-orange-600 group-hover:bg-orange-50 dark:text-white/90 dark:group-hover:text-white dark:group-hover:bg-orange-500/10">
                                 Sản phẩm <i data-lucide="chevron-down"
                                     class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
                             </button>
 
                             <!-- Mega Menu Content -->
                             <div
-                                class="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
+                                class="absolute top-full left-0 w-full bg-white dark:bg-slate-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
                                 <div class="container mx-auto p-8">
                                     <div class="grid grid-cols-12 gap-8">
                                         <!-- Column 1: Camera -->
                                         <div class="col-span-3 text-left">
                                             <h4
-                                                class="flex items-center gap-2 text-orange-600 font-bold uppercase text-xs tracking-widest mb-4 pb-2 border-b border-orange-100">
+                                                class="flex items-center gap-2 text-orange-600 font-bold uppercase text-xs tracking-widest mb-4 pb-2 border-b border-orange-100 dark:border-orange-500/20">
                                                 <i data-lucide="eye" class="w-4 h-4"></i> Camera Thông Minh
                                             </h4>
                                             <ul class="space-y-3">
                                                 <li><a href="#"
-                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 p-2 rounded-lg transition"><i
+                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 dark:hover:bg-white/5 p-2 rounded-lg transition"><i
                                                             data-lucide="scan"
                                                             class="w-4.5 h-4.5 text-slate-400 group-hover/item:text-orange-500 mt-1"></i>
                                                         <div>
                                                             <div
-                                                                class="font-bold text-slate-800 group-hover/item:text-orange-600">
+                                                                class="font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-orange-600">
                                                                 Camera Trong nhà</div>
-                                                            <div class="text-xs text-slate-500">Nhỏ gọn, đàm thoại 2
-                                                                chiều</div>
+                                                            <div class="text-xs text-slate-500 dark:text-slate-400">Nhỏ
+                                                                gọn, đàm thoại 2 chiều</div>
                                                         </div>
                                                     </a></li>
                                                 <li><a href="#"
-                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 p-2 rounded-lg transition"><i
+                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 dark:hover:bg-white/5 p-2 rounded-lg transition"><i
                                                             data-lucide="shield"
                                                             class="w-4.5 h-4.5 text-slate-400 group-hover/item:text-orange-500 mt-1"></i>
                                                         <div>
                                                             <div
-                                                                class="font-bold text-slate-800 group-hover/item:text-orange-600">
+                                                                class="font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-orange-600">
                                                                 Camera Ngoài trời</div>
-                                                            <div class="text-xs text-slate-500">Chống nước IP67, AI báo
-                                                                động</div>
+                                                            <div class="text-xs text-slate-500 dark:text-slate-400">
+                                                                Chống nước IP67, AI báo động</div>
                                                         </div>
                                                     </a></li>
                                                 <li><a href="#"
-                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 p-2 rounded-lg transition"><i
+                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 dark:hover:bg-white/5 p-2 rounded-lg transition"><i
                                                             data-lucide="settings"
                                                             class="w-4.5 h-4.5 text-slate-400 group-hover/item:text-orange-500 mt-1"></i>
                                                         <div>
                                                             <div
-                                                                class="font-bold text-slate-800 group-hover/item:text-orange-600">
+                                                                class="font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-orange-600">
                                                                 Camera PTZ</div>
-                                                            <div class="text-xs text-slate-500">Zoom quang học 30x, xoay
-                                                                360</div>
+                                                            <div class="text-xs text-slate-500 dark:text-slate-400">Zoom
+                                                                quang học 30x, xoay 360</div>
                                                         </div>
                                                     </a></li>
                                             </ul>
@@ -227,44 +326,44 @@
                                         <!-- Column 2: Storage -->
                                         <div class="col-span-3 text-left">
                                             <h4
-                                                class="flex items-center gap-2 text-blue-600 font-bold uppercase text-xs tracking-widest mb-4 pb-2 border-b border-blue-100">
+                                                class="flex items-center gap-2 text-blue-600 font-bold uppercase text-xs tracking-widest mb-4 pb-2 border-b border-blue-100 dark:border-blue-500/20">
                                                 <i data-lucide="box" class="w-4 h-4"></i> Lưu trữ & Hiển thị
                                             </h4>
                                             <ul class="space-y-3">
                                                 <li><a href="#"
-                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 p-2 rounded-lg transition"><i
+                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 dark:hover:bg-white/5 p-2 rounded-lg transition"><i
                                                             data-lucide="box"
                                                             class="w-4.5 h-4.5 text-slate-400 group-hover/item:text-blue-500 mt-1"></i>
                                                         <div>
                                                             <div
-                                                                class="font-bold text-slate-800 group-hover/item:text-blue-600">
+                                                                class="font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-blue-600">
                                                                 Đầu ghi NVR AI</div>
-                                                            <div class="text-xs text-slate-500">Phân tích khuôn mặt tại
-                                                                biên</div>
+                                                            <div class="text-xs text-slate-500 dark:text-slate-400">Phân
+                                                                tích khuôn mặt tại biên</div>
                                                         </div>
                                                     </a></li>
                                                 <li><a href="#"
-                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 p-2 rounded-lg transition"><i
+                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 dark:hover:bg-white/5 p-2 rounded-lg transition"><i
                                                             data-lucide="cloud"
                                                             class="w-4.5 h-4.5 text-slate-400 group-hover/item:text-blue-500 mt-1"></i>
                                                         <div>
                                                             <div
-                                                                class="font-bold text-slate-800 group-hover/item:text-blue-600">
+                                                                class="font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-blue-600">
                                                                 Cloud Storage</div>
-                                                            <div class="text-xs text-slate-500">Server Việt Nam, bảo mật
-                                                                cao</div>
+                                                            <div class="text-xs text-slate-500 dark:text-slate-400">
+                                                                Server Việt Nam, bảo mật cao</div>
                                                         </div>
                                                     </a></li>
                                                 <li><a href="#"
-                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 p-2 rounded-lg transition"><i
+                                                        class="flex items-start gap-3 group/item hover:bg-slate-50 dark:hover:bg-white/5 p-2 rounded-lg transition"><i
                                                             data-lucide="monitor"
                                                             class="w-4.5 h-4.5 text-slate-400 group-hover/item:text-blue-500 mt-1"></i>
                                                         <div>
                                                             <div
-                                                                class="font-bold text-slate-800 group-hover/item:text-blue-600">
+                                                                class="font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-blue-600">
                                                                 Màn hình TavaLED</div>
-                                                            <div class="text-xs text-slate-500">Giải pháp Video Wall
-                                                                đồng bộ</div>
+                                                            <div class="text-xs text-slate-500 dark:text-slate-400">Giải
+                                                                pháp Video Wall đồng bộ</div>
                                                         </div>
                                                     </a></li>
                                             </ul>
@@ -272,17 +371,19 @@
 
                                         <!-- Column 3: Banner New Product -->
                                         <div
-                                            class="col-span-3 bg-slate-50 rounded-xl p-5 border border-slate-100 relative overflow-hidden group/banner text-left">
+                                            class="col-span-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-5 border border-slate-100 dark:border-slate-700 relative overflow-hidden group/banner text-left">
                                             <div
                                                 class="absolute top-0 right-0 bg-orange-600 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">
                                                 NEW</div>
-                                            <h4 class="font-bold text-slate-900 mb-2">TavaVision Eagle Eye Pro</h4>
-                                            <p class="text-xs text-slate-500 mb-4">Dòng camera mắt thần mới nhất với khả
-                                                năng nhìn đêm có màu.</p>
-                                            <div class="w-full h-32 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">TavaVision Eagle
+                                                Eye Pro</h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Dòng camera mắt
+                                                thần mới nhất với khả năng nhìn đêm có màu.</p>
+                                            <div
+                                                class="w-full h-32 bg-gray-200 dark:bg-slate-700 rounded-lg mb-4 overflow-hidden">
                                                 <!-- Placeholder Image -->
                                                 <img src="https://images.unsplash.com/photo-1587855049254-351f400c4a86?q=80&w=1974&auto=format&fit=crop"
-                                                    class="w-full h-full object-cover transform group-hover/banner:scale-105 transition duration-500"
+                                                    class="w-full h-full object-cover transform group-hover/banner:scale-105 transition duration-500 opacity-80 hover:opacity-100"
                                                     alt="New Camera" />
                                             </div>
                                             <a href="#"
@@ -292,7 +393,7 @@
 
                                         <!-- Column 4: Banner Software -->
                                         <div
-                                            class="col-span-3 bg-slate-900 rounded-xl p-6 text-white relative overflow-hidden text-left">
+                                            class="col-span-3 bg-slate-900 dark:bg-black rounded-xl p-6 text-white relative overflow-hidden text-left">
                                             <div class="relative z-10">
                                                 <div
                                                     class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center mb-4">
@@ -317,54 +418,57 @@
                         <!-- MEGA MENU: Giải pháp -->
                         <div class="group h-full flex items-center">
                             <button
-                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-white/90 group-hover:text-white group-hover:bg-orange-500/10">
+                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-slate-700 group-hover:text-orange-600 group-hover:bg-orange-50 dark:text-white/90 dark:group-hover:text-white dark:group-hover:bg-orange-500/10">
                                 Giải pháp <i data-lucide="chevron-down"
                                     class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
                             </button>
 
                             <div
-                                class="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
+                                class="absolute top-full left-0 w-full bg-white dark:bg-slate-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
                                 <div class="container mx-auto p-8">
                                     <div class="grid grid-cols-4 gap-8 text-left">
                                         <a href="#"
-                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-orange-100">
+                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-orange-100 dark:hover:border-orange-500/30">
                                             <div
-                                                class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-orange-600 group-hover/card:text-white transition">
+                                                class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-orange-600 group-hover/card:text-white transition">
                                                 <i data-lucide="shopping-cart" class="w-6 h-6"></i>
                                             </div>
-                                            <h4 class="font-bold text-slate-900 mb-1">Bán lẻ & Chuỗi</h4>
-                                            <p class="text-xs text-slate-500">Đếm người, Heatmap, quản lý quầy thu ngân.
-                                            </p>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Bán lẻ & Chuỗi
+                                            </h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Đếm người, Heatmap,
+                                                quản lý quầy thu ngân.</p>
                                         </a>
                                         <a href="#"
-                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-blue-100">
+                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-blue-100 dark:hover:border-blue-500/30">
                                             <div
-                                                class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-blue-600 group-hover/card:text-white transition">
+                                                class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-blue-600 group-hover/card:text-white transition">
                                                 <i data-lucide="factory" class="w-6 h-6"></i>
                                             </div>
-                                            <h4 class="font-bold text-slate-900 mb-1">Nhà máy & KCN</h4>
-                                            <p class="text-xs text-slate-500">Kiểm soát ra vào, an toàn lao động, hàng
-                                                rào ảo.</p>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Nhà máy & KCN</h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Kiểm soát ra vào, an
+                                                toàn lao động, hàng rào ảo.</p>
                                         </a>
                                         <a href="#"
-                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-green-100">
+                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-green-100 dark:hover:border-green-500/30">
                                             <div
-                                                class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-green-600 group-hover/card:text-white transition">
+                                                class="w-12 h-12 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-green-600 group-hover/card:text-white transition">
                                                 <i data-lucide="landmark" class="w-6 h-6"></i>
                                             </div>
-                                            <h4 class="font-bold text-slate-900 mb-1">Ngân hàng & Tài chính</h4>
-                                            <p class="text-xs text-slate-500">Nhận diện VIP/Blacklist, an ninh kho quỹ.
-                                            </p>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Ngân hàng & Tài
+                                                chính</h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Nhận diện
+                                                VIP/Blacklist, an ninh kho quỹ.</p>
                                         </a>
                                         <a href="#"
-                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-purple-100">
+                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-purple-100 dark:hover:border-purple-500/30">
                                             <div
-                                                class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-purple-600 group-hover/card:text-white transition">
+                                                class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-purple-600 group-hover/card:text-white transition">
                                                 <i data-lucide="truck" class="w-6 h-6"></i>
                                             </div>
-                                            <h4 class="font-bold text-slate-900 mb-1">Giao thông thông minh</h4>
-                                            <p class="text-xs text-slate-500">Đọc biển số, phát hiện vi phạm, giám sát
-                                                bãi xe.</p>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Giao thông thông
+                                                minh</h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Đọc biển số, phát hiện
+                                                vi phạm, giám sát bãi xe.</p>
                                         </a>
                                     </div>
                                 </div>
@@ -374,27 +478,31 @@
                         <!-- DROPDOWN: Công nghệ -->
                         <div class="group relative h-full flex items-center">
                             <button
-                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-white/90 group-hover:text-white group-hover:bg-orange-500/10">
+                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-slate-700 group-hover:text-orange-600 group-hover:bg-orange-50 dark:text-white/90 dark:group-hover:text-white dark:group-hover:bg-orange-500/10">
                                 Công nghệ <i data-lucide="chevron-down"
                                     class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
                             </button>
                             <div
-                                class="absolute top-full left-0 w-64 bg-white shadow-xl rounded-xl border border-gray-100 mt-2 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
+                                class="absolute top-full left-0 w-64 bg-white dark:bg-slate-900 shadow-xl rounded-xl border border-gray-100 dark:border-gray-800 mt-2 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
                                 <div class="text-left">
                                     <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
                                         <i data-lucide="cpu" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700">TavaVision AI Core</span>
+                                        <span
+                                            class="text-sm font-semibold text-slate-700 dark:text-slate-200">TavaVision
+                                            AI Core</span>
                                     </a>
                                     <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
                                         <i data-lucide="cloud" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700">Cloud Platform</span>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Cloud
+                                            Platform</span>
                                     </a>
                                     <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
                                         <i data-lucide="lock" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700">Bảo mật dữ liệu</span>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Bảo mật
+                                            dữ liệu</span>
                                     </a>
                                 </div>
                             </div>
@@ -403,32 +511,36 @@
                         <!-- DROPDOWN: Hỗ trợ -->
                         <div class="group relative h-full flex items-center">
                             <button
-                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-white/90 group-hover:text-white group-hover:bg-orange-500/10">
+                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-slate-700 group-hover:text-orange-600 group-hover:bg-orange-50 dark:text-white/90 dark:group-hover:text-white dark:group-hover:bg-orange-500/10">
                                 Hỗ trợ <i data-lucide="chevron-down"
                                     class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
                             </button>
                             <div
-                                class="absolute top-full left-0 w-64 bg-white shadow-xl rounded-xl border border-gray-100 mt-2 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
+                                class="absolute top-full left-0 w-64 bg-white dark:bg-slate-900 shadow-xl rounded-xl border border-gray-100 dark:border-gray-800 mt-2 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
                                 <div class="text-left">
                                     <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
                                         <i data-lucide="download" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700">Trung tâm tải về</span>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Trung tâm
+                                            tải về</span>
                                     </a>
                                     <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
                                         <i data-lucide="wrench" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700">Kích hoạt bảo hành</span>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Kích hoạt
+                                            bảo hành</span>
                                     </a>
                                     <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
                                         <i data-lucide="file-text" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700">Tài liệu hướng dẫn</span>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Tài liệu
+                                            hướng dẫn</span>
                                     </a>
                                     <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg transition">
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
                                         <i data-lucide="map-pin" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700">Hệ thống đại lý</span>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Hệ thống
+                                            đại lý</span>
                                     </a>
                                 </div>
                             </div>
@@ -438,8 +550,18 @@
 
                     <!-- 3. Right Actions -->
                     <div class="hidden lg:flex items-center gap-4 z-50">
+                        <!-- Theme Toggle Button -->
+                        <button onclick="toggleTheme()"
+                            class="w-10 h-10 rounded-full flex items-center justify-center transition text-slate-500 hover:bg-slate-100 dark:text-white dark:hover:bg-white/10"
+                            title="Toggle Dark Mode">
+                            <!-- Sun Icon (Hidden manually via CSS if dark) -->
+                            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                            <!-- Moon Icon (Hidden manually via CSS if light) -->
+                            <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                        </button>
+
                         <button
-                            class="action-search-btn w-10 h-10 rounded-full flex items-center justify-center transition text-white hover:bg-white/10">
+                            class="action-search-btn w-10 h-10 rounded-full flex items-center justify-center transition text-slate-500 hover:bg-slate-100 dark:text-white dark:hover:bg-white/10">
                             <i data-lucide="search" class="w-5 h-5"></i>
                         </button>
                         <a href="#"
