@@ -20,13 +20,14 @@ get_header();
             $first_category = !empty($categories) ? $categories[0]->name : 'Uncategorized';
             $first_category_link = !empty($categories) ? get_category_link($categories[0]->term_id) : '#';
 
-            // Get Author Info
-            $author_id = get_the_author_meta('ID');
-            $author_name = get_the_author();
-            $author_avatar = get_avatar_url($author_id);
+            // Get Author Info (Hardcoded as requested)
+            $author_name = 'Chuyên viên TAVA';
+            $author_avatar = get_site_icon_url(512);
+            if (empty($author_avatar)) {
+                $author_avatar = 'https://www.gravatar.com/avatar/?d=mp'; // Fallback
+            }
 
             // Stats
-            $post_date = get_the_date('d Tháng m, Y');
             // Reading time approximation (200 words per minute)
             $content = get_post_field('post_content', $post->ID);
             $word_count = str_word_count(strip_tags($content));
@@ -73,16 +74,10 @@ get_header();
                                 <span class="block font-bold text-slate-900 dark:text-white">
                                     <?php echo esc_html($author_name); ?>
                                 </span>
-                                <span class="text-xs">Author</span>
+                                <span class="text-xs">Chuyên viên</span>
                             </div>
                         </div>
-                        <div class="hidden md:block w-px h-8 bg-gray-200 dark:bg-gray-700"></div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="calendar" class="w-4 h-4"></i>
-                            <span>
-                                <?php echo esc_html($post_date); ?>
-                            </span>
-                        </div>
+
                         <div class="flex items-center gap-2">
                             <i data-lucide="clock" class="w-4 h-4"></i>
                             <span>
@@ -185,8 +180,8 @@ get_header();
                                 <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">
                                     <?php echo esc_html($author_name); ?>
                                 </h4>
-                                <span
-                                    class="text-xs font-bold text-orange-600 uppercase tracking-widest mb-3 block">Writer</span>
+                                <span class="text-xs font-bold text-orange-600 uppercase tracking-widest mb-3 block">Chuyên
+                                    viên</span>
                                 <p class="text-sm text-slate-600 dark:text-gray-400 leading-relaxed mb-4">
                                     <?php echo esc_html(get_the_author_meta('description')); ?>
                                 </p>
@@ -401,7 +396,7 @@ get_header();
                                                 class="flex items-center justify-between text-xs text-slate-400 pt-4 border-t border-gray-50 dark:border-gray-800 mt-auto">
                                                 <div class="flex items-center gap-2">
                                                     <i data-lucide="user" class="w-3.5 h-3.5"></i>
-                                                    <?php echo get_the_author(); ?>
+                                                    Chuyên viên TAVA
                                                 </div>
                                                 <div class="flex items-center gap-2">
                                                     <i data-lucide="clock" class="w-3.5 h-3.5"></i> 5 min read
