@@ -4,7 +4,7 @@ Theme URI: https://toan.host
 Author: Antigravity
 Author URI: https://google.com
 Description: Theme TavaCam custom design using Tailwind CSS with FPT Camera inspired visual.
-Version: 1.1
+Version: 1.2
 Text Domain: tavacam
 */
 
@@ -19,21 +19,23 @@ Text Domain: tavacam
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    /* Reduced from default 16px */
 }
 
 /* =========================================
    UNIVERSAL DESIGN TOKENS
    ========================================= */
 .btn-primary {
-    @apply bg-[#f84b2f] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-[#e03a1f] shadow-lg shadow-orange-500/20 active:scale-95 flex items-center gap-2;
+    @apply bg-[#f84b2f] text-white px-6 py-3 rounded-full font-bold transition-all duration-300 hover:bg-[#e03a1f] shadow-lg shadow-orange-500/20 active:scale-95 flex items-center gap-2 text-sm;
 }
 
 .section-title {
-    @apply text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight;
+    @apply text-2xl md:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-tight;
 }
 
 .section-subtitle {
-    @apply text-[#f84b2f] font-bold uppercase tracking-widest text-sm mb-3 block;
+    @apply text-[#f84b2f] font-bold uppercase tracking-widest text-xs mb-3 block;
 }
 
 /* =========================================
@@ -124,10 +126,16 @@ body {
    ========================================= */
 .prose {
     @apply max-w-none text-slate-700 dark:text-slate-300 leading-relaxed;
+    font-size: 15px;
+    /* Reduced */
 }
 
 .prose h2 {
-    @apply text-3xl font-black text-slate-900 dark:text-white mt-12 mb-6;
+    @apply text-2xl md:text-3xl font-black text-slate-900 dark:text-white mt-10 mb-5;
+}
+
+.prose h3 {
+    @apply text-xl md:text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4;
 }
 
 .prose a {
@@ -138,11 +146,11 @@ body {
    WHY CHOOSE PREMIUM (FPT STYLE)
    ========================================= */
 .item-why-premium {
-    @apply relative overflow-hidden rounded-[40px] bg-white dark:bg-slate-900 shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2;
+    @apply relative overflow-hidden rounded-[32px] bg-white dark:bg-slate-900 shadow-lg transition-all duration-500 hover:shadow-2xl;
 }
 
 .item-why-premium .avarta {
-    @apply relative h-[280px] overflow-hidden;
+    @apply relative h-[240px] overflow-hidden;
 }
 
 .item-why-premium .avarta img {
@@ -158,24 +166,24 @@ body {
 }
 
 .item-why-premium .info-card {
-    @apply bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl p-8 rounded-[32px] border border-white/20 dark:border-slate-800/50 shadow-xl relative -mt-20 z-10 mx-2;
+    @apply bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl p-6 md:p-7 rounded-[28px] border border-white/20 dark:border-slate-800/50 shadow-xl relative -mt-16 z-10 mx-2;
 }
 
 .item-why-premium .icon-wrapper {
-    @apply w-16 h-16 rounded-2xl bg-orange-600 flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30;
+    @apply w-14 h-14 rounded-xl bg-orange-600 flex items-center justify-center mb-5 shadow-lg shadow-orange-500/30;
 }
 
 .item-why-premium h4 {
-    @apply text-xl font-black text-slate-900 dark:text-white leading-tight mb-4 uppercase italic;
+    @apply text-base md:text-lg font-black text-slate-900 dark:text-white leading-tight mb-3 uppercase italic;
 }
 
 .item-why-premium p {
-    @apply text-sm text-slate-500 dark:text-slate-400 leading-relaxed;
+    @apply text-xs md:text-sm text-slate-500 dark:text-slate-400 leading-relaxed;
 }
 
 .item-why-premium .icon-wrapper svg,
 .item-why-premium .icon-wrapper i {
-    @apply text-white w-8 h-8;
+    @apply text-white w-7 h-7;
 }
 
 .item-why-premium .icon-wrapper svg path {

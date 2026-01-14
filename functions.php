@@ -42,8 +42,11 @@ function tavacam_scripts()
 {
     wp_enqueue_style('tavacam-style', get_stylesheet_uri());
 
+    // Enqueue Custom Animations
+    wp_enqueue_style('tavacam-animations', get_template_directory_uri() . '/animations.css', array(), '1.0.0');
+
     // Enqueue Google Fonts
-    wp_enqueue_style('tavacam-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', array(), null);
+    wp_enqueue_style('tavacam-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap', array(), null);
 
     // Enqueue Lucide Icons
     wp_enqueue_script('lucide-icons', 'https://unpkg.com/lucide@latest', array(), null, false);

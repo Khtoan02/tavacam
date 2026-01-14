@@ -1,0 +1,155 @@
+/* ========================================
+   CUSTOM ANIMATIONS FOR PREMIUM HOMEPAGE
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes pulse-orange {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(248, 75, 47, 0.7);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(248, 75, 47, 0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.animation-delay-100 {
+    animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+    animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+    animation-delay: 0.4s;
+}
+
+.swiper-slide-active .animate-fade-in-up {
+    animation-play-state: running;
+}
+
+/* Custom Swiper Pagination */
+.swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    width: 40px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #f84b2f, #ff6b52) !important;
+    box-shadow: 0 4px 12px rgba(248, 75, 47, 0.4);
+}
+
+/* Glassmorphism Enhancement */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+    background: rgba(15, 23, 42, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth Gradient Transitions */
+.gradient-animate {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Loading Shimmer Effect */
+.shimmer {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Text Gradient */
+.text-gradient-orange {
+    background: linear-gradient(135deg, #f84b2f, #ff6b52, #ffa31a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Card Hover Effect */
+.card-hover-lift {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Pulse */
+.btn-pulse {
+    animation: pulse-orange 2s infinite;
+}
