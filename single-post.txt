@@ -1,0 +1,440 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Globe, ChevronDown, Search, Menu, X, 
+  CheckCircle, Cloud, Cpu, Headset, ArrowRight, Play, 
+  Shield, Wifi, Briefcase, 
+  Scan, Monitor, Activity, 
+  BarChart3, BrainCircuit, Eye, Zap, Box, Map, Home, Building2, Mail, 
+  ChevronLeft, ChevronRight, Smartphone, Layers,
+  Wrench, Settings, Battery, ZoomIn, Aperture, Award, MoveRight, Terminal, Crosshair, Hexagon, Triangle, Circle,
+  Clock, Calendar, User, Share2, Facebook, Twitter, Linkedin, Copy, Bookmark, MessageSquare, ThumbsUp
+} from 'lucide-react';
+
+const BlogPost = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+
+  // Header Scroll & Reading Progress Effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      
+      // Calculate reading progress
+      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setReadingProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="font-sans text-slate-300 bg-[#050505] selection:bg-orange-500/30 selection:text-white overflow-x-hidden">
+      
+      {/* GLOBAL STYLES & SHAPES */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+          --primary-orange: #F97316;
+          --dark-bg: #050505;
+        }
+
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Shapes */
+        .cyber-cut {
+          clip-path: polygon(
+            20px 0, 100% 0, 
+            100% calc(100% - 20px), calc(100% - 20px) 100%, 
+            0 100%, 0 20px
+          );
+        }
+        .btn-cut {
+          clip-path: polygon(
+            10px 0, 100% 0, 
+            100% calc(100% - 10px), calc(100% - 10px) 100%, 
+            0 100%, 0 10px
+          );
+        }
+        .bg-tech-grid {
+          background-size: 50px 50px;
+          background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Typography Styles for Content */
+        .prose p { margin-bottom: 1.5em; line-height: 1.8; color: #94a3b8; }
+        .prose h2 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.875rem; margin-top: 3rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -0.02em; }
+        .prose h3 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .prose strong { color: #fff; font-weight: 600; }
+        .prose ul { list-style-type: none; padding-left: 0; margin-bottom: 2rem; }
+        .prose li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: #94a3b8; }
+        .prose li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; background-color: #F97316; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+      `}} />
+
+      {/* ================= HEADER ================= */}
+      <header className={`fixed top-0 z-50 w-full transition-all duration-300 border-b ${scrolled ? 'bg-[#050505]/90 backdrop-blur-md border-white/10' : 'bg-transparent border-white/5'}`}>
+        {/* Reading Progress Bar */}
+        <div className="absolute bottom-0 left-0 h-[2px] bg-orange-600 transition-all duration-100 ease-out z-50" style={{ width: `${readingProgress}%` }}></div>
+        
+        <div className={`transition-all duration-300 ${scrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-9 flex items-center bg-[#0A0A0A] text-slate-500 text-[10px] tracking-widest uppercase border-b border-white/5'}`}>
+          <div className="container mx-auto px-6 flex justify-between items-center font-mono">
+            <div className="flex space-x-6">
+              <span className="flex items-center gap-1"><div className="w-1 h-1 bg-green-500 rounded-full"></div> SYSTEM: ONLINE</span>
+              <span className="text-white/10">|</span>
+              <a href="#" className="hover:text-orange-500 transition-colors">B2B PORTAL</a>
+            </div>
+            <div className="flex space-x-6">
+              <a href="tel:19006600" className="hover:text-white transition-colors">HOTLINE: 1900 6600</a>
+              <span className="text-orange-500 font-bold">VN</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-6 h-[70px]">
+            <div className="flex justify-between items-center h-full">
+              <div className="flex items-center gap-3 group cursor-pointer">
+                 <div className="relative w-10 h-10 flex items-center justify-center btn-cut bg-orange-600 text-white">
+                   <Scan size={20} strokeWidth={2} />
+                 </div>
+                 <div className="flex flex-col">
+                    <span className="text-lg font-bold tracking-tight leading-none text-white font-display">TAVA<span className="text-orange-500">VISION</span></span>
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-slate-500 mt-0.5 font-mono">AI SECURITY</span>
+                 </div>
+              </div>
+
+              <nav className="hidden lg:flex items-center gap-1">
+                {['Trang chủ', 'Sản phẩm', 'Giải pháp', 'Công nghệ', 'Hỗ trợ'].map((item, idx) => (
+                  <a key={idx} href="#" className={`relative px-5 py-2 text-[12px] font-medium uppercase tracking-wider transition-all duration-300 hover:text-white group ${idx === -1 ? 'text-white' : 'text-slate-400'}`}>
+                    {item}
+                    <span className={`absolute bottom-0 left-0 h-[2px] bg-orange-500 transition-all duration-300 w-0 group-hover:w-full`}></span>
+                  </a>
+                ))}
+              </nav>
+
+              <div className="hidden lg:flex items-center gap-4">
+                <button className="w-10 h-10 btn-cut flex items-center justify-center border border-white/20 text-slate-400 hover:text-white hover:border-white/50 transition-all"><Search size={16} /></button>
+                <a href="#" className="px-6 py-2.5 btn-cut bg-white text-black text-[11px] font-bold uppercase tracking-widest hover:bg-orange-600 hover:text-white transition-all flex items-center gap-2">
+                  Báo giá <ArrowRight size={14}/>
+               </a>
+              </div>
+              
+              <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={24}/> : <Menu size={24}/>}
+              </button>
+            </div>
+        </div>
+      </header>
+
+      {/* ================= SECTION 1: ARTICLE HERO ================= */}
+      <section className="relative w-full pt-40 pb-20 bg-tech-grid border-b border-white/5">
+         <div className="container mx-auto px-6 relative z-10">
+             
+             {/* Breadcrumb & Meta */}
+             <div className="flex flex-wrap items-center gap-4 text-[10px] md:text-xs font-mono uppercase tracking-widest text-slate-500 mb-8">
+                <a href="#" className="hover:text-orange-500 transition-colors">Home</a>
+                <span className="text-white/20">/</span>
+                <a href="#" className="hover:text-orange-500 transition-colors">Tech Blog</a>
+                <span className="text-white/20">/</span>
+                <span className="text-white">AI Technology</span>
+             </div>
+
+             <div className="max-w-4xl">
+                 <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-orange-500/30 bg-orange-500/10 backdrop-blur-md rounded-sm">
+                    <Cpu size={14} className="text-orange-500"/>
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Deep Learning Series</span>
+                 </div>
+                 
+                 <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-10 tracking-tight">
+                    Tương lai của An ninh: Khi AI thay thế con người trong <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Phát hiện Rủi ro</span>
+                 </h1>
+
+                 {/* Author & Stats Bar */}
+                 <div className="flex flex-wrap items-center gap-8 py-6 border-y border-white/10">
+                    <div className="flex items-center gap-3">
+                       <div className="w-10 h-10 rounded-none btn-cut overflow-hidden border border-white/20">
+                          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover" alt="Author"/>
+                       </div>
+                       <div>
+                          <span className="block text-white font-bold text-xs uppercase tracking-wide">Dr. Tran Minh</span>
+                          <span className="block text-slate-500 text-[10px] font-mono">CTO, TavaVision</span>
+                       </div>
+                    </div>
+
+                    <div className="h-8 w-px bg-white/10 hidden md:block"></div>
+
+                    <div className="flex items-center gap-6 text-slate-400 text-xs font-medium">
+                       <div className="flex items-center gap-2"><Calendar size={16} className="text-orange-600"/> 12 Oct, 2026</div>
+                       <div className="flex items-center gap-2"><Clock size={16} className="text-blue-600"/> 8 min read</div>
+                       <div className="flex items-center gap-2"><Eye size={16} className="text-green-600"/> 2.4k Views</div>
+                    </div>
+                 </div>
+             </div>
+         </div>
+      </section>
+
+      {/* ================= SECTION 2: MAIN CONTENT ================= */}
+      <section className="relative py-20 bg-[#050505]">
+         <div className="container mx-auto px-6">
+            <div className="flex flex-col lg:flex-row gap-16">
+               
+               {/* LEFT SIDEBAR (Sticky Controls) */}
+               <div className="hidden lg:block w-20 relative">
+                  <div className="sticky top-32 flex flex-col gap-6 items-center border-r border-white/5 pr-6">
+                     <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-white transition-colors tooltip-trigger relative group">
+                        <ThumbsUp size={20}/>
+                        <span className="absolute left-12 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Like</span>
+                     </button>
+                     <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-white transition-colors group">
+                        <MessageSquare size={20}/>
+                        <span className="absolute left-12 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Comment</span>
+                     </button>
+                     <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-white transition-colors group">
+                        <Bookmark size={20}/>
+                        <span className="absolute left-12 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Save</span>
+                     </button>
+                     <div className="w-8 h-px bg-white/10 my-2"></div>
+                     <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-[#1877F2] transition-colors"><Facebook size={20}/></button>
+                     <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-[#1DA1F2] transition-colors"><Twitter size={20}/></button>
+                     <button className="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-[#0A66C2] transition-colors"><Linkedin size={20}/></button>
+                  </div>
+               </div>
+
+               {/* CENTER CONTENT (The Article) */}
+               <div className="flex-1 max-w-3xl">
+                  {/* Lead Paragraph */}
+                  <div className="text-lg md:text-xl text-white font-light leading-relaxed mb-12 border-b border-white/5 pb-12">
+                     <p>
+                        Trong kỷ nguyên số, camera giám sát không còn là "đôi mắt" thụ động ghi lại hình ảnh. Với sự bùng nổ của <span className="text-orange-500 font-medium">Trí tuệ nhân tạo (AI)</span> và Học sâu (Deep Learning), chúng đang chuyển mình thành những "bộ não" có khả năng tư duy, phân tích và dự báo rủi ro trước khi chúng thực sự xảy ra.
+                     </p>
+                  </div>
+
+                  {/* Main Article */}
+                  <article className="prose">
+                     <h2 id="part-1">1. Từ Quan sát thụ động đến Giám sát chủ động</h2>
+                     <p>
+                        Trước đây, hệ thống CCTV truyền thống chỉ có tác dụng chính là "hậu kiểm" - tức xem lại video sau khi sự việc đã xảy ra. Điều này tạo ra một lỗ hổng lớn về an ninh, đặc biệt là trong các tình huống khẩn cấp cần phản ứng ngay lập tức như hỏa hoạn, xâm nhập trái phép hay tai nạn lao động.
+                     </p>
+                     
+                     {/* Industrial Quote Box */}
+                     <div className="my-10 cyber-cut bg-[#0A0A0A] border border-white/10 p-8 relative">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-orange-600"></div>
+                        <p className="text-lg text-white font-display font-medium italic mb-4">
+                           "AI không thay thế con người trong vấn đề an ninh. AI giải phóng con người khỏi việc phải nhìn chằm chằm vào màn hình 24/7 để họ có thể tập trung vào việc ra quyết định xử lý."
+                        </p>
+                        <div className="flex items-center gap-3">
+                           <div className="h-px w-8 bg-white/20"></div>
+                           <span className="text-xs font-bold uppercase text-slate-500 tracking-widest">Dr. Tran Minh</span>
+                        </div>
+                        <Activity size={120} className="absolute -right-10 -bottom-10 text-white/5 rotate-12"/>
+                     </div>
+
+                     <p>
+                        Tại <strong>TavaVision</strong>, chúng tôi định nghĩa lại khái niệm an ninh với công nghệ <em>Active Defense</em>. Camera không chỉ ghi hình, nó hiểu hình ảnh đó đang nói lên điều gì.
+                     </p>
+
+                     <h2 id="part-2">2. Các ứng dụng thực tiễn của AI Vision</h2>
+                     
+                     {/* Tech Image with Viewfinder Overlay */}
+                     <div className="my-10 relative group">
+                        <div className="absolute inset-0 border border-orange-500/30 z-10 pointer-events-none">
+                           {/* Corners */}
+                           <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-orange-500"></div>
+                           <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-orange-500"></div>
+                           <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-orange-500"></div>
+                           <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-orange-500"></div>
+                           {/* Center Cross */}
+                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-orange-500/50">
+                              <Crosshair size={40} strokeWidth={1}/>
+                           </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1555436169-20e93ee0a7ac?q=80&w=2070&auto=format&fit=crop" className="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-500" alt="AI Analysis"/>
+                        <div className="bg-[#0A0A0A] border-x border-b border-white/10 p-3 flex justify-between items-center text-[10px] font-mono text-slate-500">
+                           <span>FIG 2.1: BEHAVIOR ANALYSIS MODEL</span>
+                           <span>CONFIDENCE: 98.4%</span>
+                        </div>
+                     </div>
+
+                     <p>
+                        Không chỉ nhận diện khuôn mặt, các model AI mới nhất còn có khả năng phân tích khung xương (Skeleton Detection) để hiểu hành động của con người:
+                     </p>
+                     <ul>
+                        <li><strong>Phát hiện té ngã:</strong> Cảnh báo ngay lập tức cho bộ phận y tế trong bệnh viện hoặc viện dưỡng lão.</li>
+                        <li><strong>Phát hiện ẩu đả:</strong> Nhận diện các cử chỉ bạo lực nhanh và mạnh bất thường.</li>
+                        <li><strong>Lảng vảng (Loitering):</strong> Cảnh báo khi có đối tượng đứng quá lâu tại khu vực nhạy cảm (kho quỹ, phòng server).</li>
+                     </ul>
+
+                     <h2 id="part-3">3. Tương lai là sự kết hợp giữa AI Camera và Big Data</h2>
+                     <p>
+                        Dữ liệu từ camera AI không chỉ dừng lại ở an ninh. Trong bán lẻ, nó là mỏ vàng dữ liệu về hành vi khách hàng (Heatmap, Customer Flow). Trong giao thông, nó giúp điều tiết đèn tín hiệu thông minh.
+                     </p>
+                  </article>
+                  
+                  {/* Article Footer: Tags */}
+                  <div className="mt-16 pt-8 border-t border-white/10">
+                     <div className="flex flex-wrap gap-3">
+                        {['AI Security', 'Deep Learning', 'Smart City', 'Computer Vision', 'IoT'].map(tag => (
+                           <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 text-slate-400 text-xs font-mono hover:bg-orange-600 hover:text-white hover:border-orange-600 transition-colors cursor-pointer">#{tag}</span>
+                        ))}
+                     </div>
+                  </div>
+               </div>
+
+               {/* RIGHT SIDEBAR (Table of Contents & Related) */}
+               <div className="w-full lg:w-1/4 space-y-8">
+                  
+                  {/* Widget: Table of Contents */}
+                  <div className="cyber-cut bg-[#0A0A0A] border border-white/10 p-6 sticky top-32">
+                     <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                        <Terminal size={14} className="text-orange-500"/>
+                        Mục lục
+                     </h4>
+                     <ul className="space-y-4 text-xs font-medium text-slate-500">
+                        <li>
+                           <a href="#part-1" className="hover:text-white flex items-start gap-2 group transition-colors">
+                              <span className="text-orange-600 group-hover:text-orange-500">01.</span>
+                              Giám sát chủ động
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#part-2" className="hover:text-white flex items-start gap-2 group transition-colors">
+                              <span className="text-orange-600 group-hover:text-orange-500">02.</span>
+                              Ứng dụng thực tiễn
+                           </a>
+                           <ul className="pl-4 mt-2 space-y-2 border-l border-white/5 ml-1">
+                              <li><a href="#" className="hover:text-white block">Nhận diện hành vi</a></li>
+                              <li><a href="#" className="hover:text-white block">Phân tích dữ liệu</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#part-3" className="hover:text-white flex items-start gap-2 group transition-colors">
+                              <span className="text-orange-600 group-hover:text-orange-500">03.</span>
+                              Tương lai Big Data
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+
+                  {/* Widget: Product Integration */}
+                  <div className="bg-[#0F172A] border border-blue-900/30 p-6 cyber-cut relative group overflow-hidden">
+                     <div className="absolute top-0 right-0 w-24 h-24 bg-blue-600 rounded-full blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                     
+                     <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500 mb-2 block">Sản phẩm liên quan</span>
+                     <h4 className="text-white font-bold text-lg mb-4">Tava AI Bullet 5I</h4>
+                     <div className="relative w-full aspect-video bg-black/50 mb-4 border border-white/10 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1587855049254-351f400c4a86?q=80&w=1974&auto=format&fit=crop" className="w-3/4 object-contain" alt="Product"/>
+                     </div>
+                     <p className="text-xs text-slate-400 mb-4">Dòng camera chuyên dụng cho nhận diện hành vi ngoài trời.</p>
+                     <button className="w-full btn-cut bg-blue-600 text-white text-xs font-bold uppercase py-3 hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/20">Xem chi tiết</button>
+                  </div>
+
+                  {/* Widget: Newsletter */}
+                  <div className="bg-gradient-to-br from-orange-900/20 to-black border border-orange-500/20 p-6 cyber-cut">
+                     <Mail size={24} className="text-orange-500 mb-4"/>
+                     <h4 className="text-white font-bold text-sm uppercase mb-2">Đăng ký bản tin</h4>
+                     <p className="text-xs text-slate-400 mb-4">Nhận bài viết chuyên sâu về công nghệ AI hàng tuần.</p>
+                     <input type="email" placeholder="Email doanh nghiệp" className="w-full bg-black border border-white/10 text-white text-xs px-4 py-3 mb-2 focus:outline-none focus:border-orange-500 transition-colors"/>
+                     <button className="w-full btn-cut bg-white text-black text-xs font-bold uppercase py-3 hover:bg-orange-500 hover:text-white transition-colors">Subscribe</button>
+                  </div>
+
+               </div>
+
+            </div>
+         </div>
+      </section>
+
+      {/* ================= SECTION 3: RELATED POSTS ================= */}
+      <section className="py-24 bg-[#080808] border-t border-white/5">
+         <div className="container mx-auto px-6">
+            <div className="flex justify-between items-end mb-12">
+               <div>
+                  <span className="text-orange-500 font-mono text-xs uppercase tracking-widest mb-2 block">// READ MORE</span>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-white uppercase">Bài viết liên quan</h2>
+               </div>
+               <div className="flex gap-2">
+                  <button className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-colors btn-cut text-white"><ChevronLeft size={16}/></button>
+                  <button className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-colors btn-cut text-white"><ChevronRight size={16}/></button>
+               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+               {[1, 2, 3].map((item) => (
+                  <article key={item} className="group cursor-pointer">
+                     <div className="relative h-48 cyber-cut overflow-hidden mb-5 border border-white/10 bg-[#050505]">
+                        <img 
+                           src={`https://picsum.photos/seed/${item + 50}/800/600`} 
+                           className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 opacity-60 group-hover:opacity-100 grayscale group-hover:grayscale-0" 
+                           alt="Blog Post"
+                        />
+                        <div className="absolute top-0 right-0 bg-orange-600 text-white text-[10px] font-bold px-3 py-1 btn-cut m-4">Tech</div>
+                     </div>
+                     <span className="text-[10px] text-slate-500 font-mono uppercase mb-2 block">10 Jan, 2026</span>
+                     <h3 className="text-lg font-bold text-white mb-3 group-hover:text-orange-500 transition line-clamp-2 leading-snug">
+                        5 Xu hướng AI Camera định hình ngành an ninh năm 2026
+                     </h3>
+                     <a href="#" className="inline-flex items-center text-slate-400 text-[10px] font-bold uppercase tracking-widest hover:text-white transition-colors group/link">
+                        Đọc tiếp <ArrowRight size={12} className="ml-1 group-hover/link:translate-x-1 transition-transform"/>
+                     </a>
+                  </article>
+               ))}
+            </div>
+         </div>
+      </section>
+
+      {/* ================= FOOTER (Reused) ================= */}
+      <footer className="bg-[#020202] text-slate-400 font-sans border-t border-white/10 pt-20 pb-10 text-xs">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between gap-12 mb-20 border-b border-white/5 pb-12">
+             <div className="max-w-xs">
+                <div className="flex items-center gap-3 mb-6">
+                   <div className="w-10 h-10 btn-cut bg-orange-600 flex items-center justify-center text-white"><Scan size={20} strokeWidth={2} /></div>
+                   <h2 className="text-2xl font-bold text-white tracking-tight uppercase font-display">TAVA<span className="text-orange-600">VISION</span></h2>
+                </div>
+                <p className="leading-relaxed mb-6 text-[11px]">Professional AI Security. Kiến tạo sự an tâm thông qua công nghệ.</p>
+                <div className="flex gap-4">
+                   {[1,2,3].map(i => <div key={i} className="w-8 h-8 btn-cut bg-white/5 flex items-center justify-center hover:bg-orange-600 hover:text-white transition-colors cursor-pointer"><Globe size={14}/></div>)}
+                </div>
+             </div>
+             
+             <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
+                <div>
+                   <h4 className="text-white font-bold uppercase mb-6 tracking-widest text-[10px]">Sản phẩm</h4>
+                   <ul className="space-y-3">
+                      {['Camera AI', 'TavaLED', 'VMS Software', 'Cloud Storage'].map(item => <li key={item}><a href="#" className="hover:text-white transition-colors uppercase text-[10px] font-medium">{item}</a></li>)}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-white font-bold uppercase mb-6 tracking-widest text-[10px]">Công ty</h4>
+                   <ul className="space-y-3">
+                      {['Về chúng tôi', 'Tuyển dụng', 'Tin tức', 'Liên hệ'].map(item => <li key={item}><a href="#" className="hover:text-white transition-colors uppercase text-[10px] font-medium">{item}</a></li>)}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-white font-bold uppercase mb-6 tracking-widest text-[10px]">Văn phòng</h4>
+                   <p className="mb-2"><strong className="text-white">Hà Nội:</strong> Lô 5 - TT7, Thanh Trì</p>
+                   <p><strong className="text-white">TP.HCM:</strong> Quận 7</p>
+                </div>
+             </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+             <p className="text-[10px] uppercase tracking-wide">© 2026 TavaVision. All rights reserved.</p>
+             <div className="flex gap-6 uppercase font-bold tracking-wider text-[10px]">
+                <a href="#" className="hover:text-white">Privacy</a>
+                <a href="#" className="hover:text-white">Terms</a>
+             </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  );
+};
+
+export default BlogPost;

@@ -1,0 +1,399 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Globe, ChevronDown, Search, Menu, X, 
+  CheckCircle, Cloud, Cpu, Headset, ArrowRight, Play, 
+  Shield, Wifi, Briefcase, 
+  Scan, Monitor, Activity, 
+  BarChart3, BrainCircuit, Eye, Zap, Box, Map, Home, Building2, Mail, 
+  ChevronLeft, ChevronRight, Smartphone, Layers,
+  Wrench, Settings, Battery, ZoomIn, Aperture, Award, MoveRight, Terminal, Crosshair, Hexagon, Triangle, Circle,
+  Filter, Tag, Calendar, Clock, User, ArrowUpRight, Star // Đã thêm Star vào import
+} from 'lucide-react';
+
+const BlogListing = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  // Header Scroll Effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Mock Data
+  const categories = ['All', 'Công nghệ AI', 'Giải pháp An ninh', 'Kinh doanh', 'Sự kiện'];
+  
+  const featuredPost = {
+    category: "Công nghệ AI",
+    title: "Tương lai của An ninh: Khi AI thay thế con người trong Phát hiện Rủi ro",
+    desc: "Khám phá cách Deep Learning và Computer Vision đang định hình lại ngành công nghiệp giám sát toàn cầu.",
+    author: "Dr. Tran Minh",
+    date: "12 Oct, 2026",
+    img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+  };
+
+  const techPosts = [
+    {
+      title: "Giải mã thuật toán Skeleton Analysis: Hiểu hành vi con người",
+      desc: "Phân tích khung xương giúp camera phân biệt chính xác giữa người và vật thể chuyển động.",
+      img: "https://images.unsplash.com/photo-1527430253228-e93688616381?q=80&w=2070&auto=format&fit=crop",
+      tag: "R&D"
+    },
+    {
+      title: "Edge Computing: Tại sao xử lý tại biên lại quan trọng?",
+      desc: "Giảm độ trễ, tiết kiệm băng thông và bảo mật dữ liệu tốt hơn với mô hình xử lý tại biên.",
+      img: "https://images.unsplash.com/photo-1558494949-ef526b01201b?q=80&w=1974&auto=format&fit=crop",
+      tag: "Tech"
+    },
+    {
+      title: "Cyber Security trong Camera IP: Những lỗ hổng cần tránh",
+      desc: "Bảo vệ hệ thống CCTV của bạn trước các cuộc tấn công mạng ngày càng tinh vi.",
+      img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
+      tag: "Security"
+    }
+  ];
+
+  const solutionPosts = [
+    {
+      title: "Giải pháp an ninh đa lớp cho Chuỗi bán lẻ",
+      date: "10 Oct, 2026",
+      tag: "Retail"
+    },
+    {
+      title: "Kiểm soát ra vào thông minh cho Tòa nhà văn phòng",
+      date: "08 Oct, 2026",
+      tag: "Office"
+    },
+    {
+      title: "Hệ thống giám sát giao thông thông minh (ITS)",
+      date: "05 Oct, 2026",
+      tag: "Traffic"
+    },
+    {
+      title: "Ứng dụng Heatmap tối ưu hóa không gian cửa hàng",
+      date: "01 Oct, 2026",
+      tag: "Retail"
+    }
+  ];
+
+  return (
+    <div className="font-sans text-slate-300 bg-[#050505] selection:bg-orange-500/30 selection:text-white overflow-x-hidden">
+      
+      {/* GLOBAL STYLES & SHAPES */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+          --primary-orange: #F97316;
+          --dark-bg: #050505;
+        }
+
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .cyber-cut {
+          clip-path: polygon(
+            20px 0, 100% 0, 
+            100% calc(100% - 20px), calc(100% - 20px) 100%, 
+            0 100%, 0 20px
+          );
+        }
+        .btn-cut {
+          clip-path: polygon(
+            10px 0, 100% 0, 
+            100% calc(100% - 10px), calc(100% - 10px) 100%, 
+            0 100%, 0 10px
+          );
+        }
+        .bg-tech-grid {
+          background-size: 50px 50px;
+          background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}} />
+
+      {/* ================= HEADER ================= */}
+      <header className={`fixed top-0 z-50 w-full transition-all duration-300 border-b ${scrolled ? 'bg-[#050505]/90 backdrop-blur-md border-white/10' : 'bg-transparent border-white/5'}`}>
+        <div className={`transition-all duration-300 ${scrolled ? 'h-0 opacity-0 overflow-hidden' : 'h-9 flex items-center bg-[#0A0A0A] text-slate-500 text-[10px] tracking-widest uppercase border-b border-white/5'}`}>
+          <div className="container mx-auto px-6 flex justify-between items-center font-mono">
+            <div className="flex space-x-6">
+              <span className="flex items-center gap-1"><div className="w-1 h-1 bg-green-500 rounded-full"></div> SYSTEM: ONLINE</span>
+              <span className="text-white/10">|</span>
+              <a href="#" className="hover:text-orange-500 transition-colors">B2B PORTAL</a>
+            </div>
+            <div className="flex space-x-6">
+              <a href="tel:19006600" className="hover:text-white transition-colors">HOTLINE: 1900 6600</a>
+              <span className="text-orange-500 font-bold">VN</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-6 h-[70px]">
+            <div className="flex justify-between items-center h-full">
+              <div className="flex items-center gap-3 group cursor-pointer">
+                 <div className="relative w-10 h-10 flex items-center justify-center btn-cut bg-orange-600 text-white">
+                   <Scan size={20} strokeWidth={2} />
+                 </div>
+                 <div className="flex flex-col">
+                    <span className="text-lg font-bold tracking-tight leading-none text-white font-display">TAVA<span className="text-orange-500">VISION</span></span>
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-slate-500 mt-0.5 font-mono">AI SECURITY</span>
+                 </div>
+              </div>
+
+              <nav className="hidden lg:flex items-center gap-1">
+                {['Trang chủ', 'Sản phẩm', 'Giải pháp', 'Công nghệ', 'Hỗ trợ'].map((item, idx) => (
+                  <a key={idx} href="#" className={`relative px-5 py-2 text-[12px] font-medium uppercase tracking-wider transition-all duration-300 hover:text-white group ${item === 'Công nghệ' ? 'text-white' : 'text-slate-400'}`}>
+                    {item}
+                    <span className={`absolute bottom-0 left-0 h-[2px] bg-orange-500 transition-all duration-300 ${item === 'Công nghệ' ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                  </a>
+                ))}
+              </nav>
+
+              <div className="hidden lg:flex items-center gap-4">
+                <button className="w-10 h-10 btn-cut flex items-center justify-center border border-white/20 text-slate-400 hover:text-white hover:border-white/50 transition-all"><Search size={16} /></button>
+                <a href="#" className="px-6 py-2.5 btn-cut bg-white text-black text-[11px] font-bold uppercase tracking-widest hover:bg-orange-600 hover:text-white transition-all flex items-center gap-2">
+                  Báo giá <ArrowRight size={14}/>
+               </a>
+              </div>
+              
+              <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={24}/> : <Menu size={24}/>}
+              </button>
+            </div>
+        </div>
+      </header>
+
+      {/* ================= PAGE TITLE ================= */}
+      <section className="pt-40 pb-12 bg-tech-grid border-b border-white/5">
+         <div className="container mx-auto px-6">
+             <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+                <div>
+                   <span className="text-orange-500 font-mono text-xs uppercase tracking-widest mb-2 block">// KNOWLEDGE HUB</span>
+                   <h1 className="font-display text-4xl md:text-6xl font-bold text-white uppercase tracking-tight">Tava <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Insights</span></h1>
+                </div>
+                
+                {/* Category Filter */}
+                <div className="flex flex-wrap gap-2">
+                   {categories.map((cat, idx) => (
+                      <button 
+                         key={idx}
+                         onClick={() => setActiveCategory(cat)}
+                         className={`px-4 py-2 text-[11px] font-bold uppercase tracking-wider btn-cut transition-all ${activeCategory === cat ? 'bg-orange-600 text-white' : 'bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white'}`}
+                      >
+                         {cat}
+                      </button>
+                   ))}
+                </div>
+             </div>
+         </div>
+      </section>
+
+      <main className="container mx-auto px-6 py-16">
+         
+         {/* ================= FEATURED POST (Spotlight) ================= */}
+         <section className="mb-24">
+            <div className="group relative w-full h-[500px] cyber-cut overflow-hidden border border-white/10 bg-[#0A0A0A]">
+               <img src={featuredPost.img} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-[2s] grayscale group-hover:grayscale-0" alt="Featured"/>
+               <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent"></div>
+               
+               <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 flex flex-col items-start z-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-orange-500/30 bg-orange-500/10 backdrop-blur-md rounded-sm">
+                     <Star size={12} className="text-orange-500 fill-orange-500"/>
+                     <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Featured Article</span>
+                  </div>
+                  <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-4 leading-tight max-w-4xl hover:text-orange-500 transition-colors cursor-pointer">{featuredPost.title}</h2>
+                  <p className="text-slate-300 text-sm md:text-base max-w-2xl mb-8 leading-relaxed border-l-2 border-orange-500 pl-4">{featuredPost.desc}</p>
+                  
+                  <div className="flex items-center gap-6 text-xs font-mono text-slate-400">
+                     <span className="flex items-center gap-2"><User size={14}/> {featuredPost.author}</span>
+                     <span className="flex items-center gap-2"><Calendar size={14}/> {featuredPost.date}</span>
+                     <button className="flex items-center gap-2 text-white hover:text-orange-500 transition-colors uppercase font-bold tracking-wider ml-auto md:ml-0">
+                        Read Full Story <ArrowRight size={14}/>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <div className="flex flex-col lg:flex-row gap-16">
+            
+            {/* ================= LEFT CONTENT: CATEGORY LISTS ================= */}
+            <div className="w-full lg:w-3/4 space-y-20">
+               
+               {/* Category 1: Tech & AI */}
+               <section>
+                  <div className="flex items-center gap-4 mb-8">
+                     <div className="w-2 h-8 bg-orange-600"></div>
+                     <h3 className="font-display text-2xl md:text-3xl font-bold text-white uppercase">Công nghệ & R&D</h3>
+                     <div className="flex-1 h-px bg-white/10"></div>
+                     <a href="#" className="text-xs font-mono uppercase text-slate-500 hover:text-white flex items-center gap-2">View All <ArrowUpRight size={14}/></a>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     {/* Big Card */}
+                     <div className="md:col-span-2 group cyber-cut bg-[#0A0A0A] border border-white/10 p-0 hover:border-orange-500/50 transition-all flex flex-col md:flex-row h-full md:h-80 overflow-hidden">
+                        <div className="w-full md:w-1/2 relative overflow-hidden">
+                           <img src={techPosts[0].img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" alt="Tech 1"/>
+                           <div className="absolute top-4 left-4 bg-black/80 backdrop-blur px-2 py-1 text-[10px] font-bold uppercase text-white border border-white/20">{techPosts[0].tag}</div>
+                        </div>
+                        <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
+                           <h4 className="text-xl font-bold text-white mb-4 group-hover:text-orange-500 transition-colors">{techPosts[0].title}</h4>
+                           <p className="text-slate-400 text-sm leading-relaxed mb-6">{techPosts[0].desc}</p>
+                           <a href="#" className="text-xs font-bold uppercase tracking-widest text-white flex items-center gap-2 hover:gap-3 transition-all">Chi tiết <MoveRight size={14}/></a>
+                        </div>
+                     </div>
+
+                     {/* Small Cards */}
+                     {techPosts.slice(1).map((post, idx) => (
+                        <div key={idx} className="group cyber-cut bg-[#0A0A0A] border border-white/10 hover:bg-[#0F172A] transition-all">
+                           <div className="relative h-48 overflow-hidden border-b border-white/5">
+                              <img src={post.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" alt={post.title}/>
+                              <div className="absolute top-4 left-4 bg-black/80 backdrop-blur px-2 py-1 text-[10px] font-bold uppercase text-white border border-white/20">{post.tag}</div>
+                           </div>
+                           <div className="p-6">
+                              <h4 className="text-base font-bold text-white mb-3 line-clamp-2 group-hover:text-orange-500 transition-colors">{post.title}</h4>
+                              <p className="text-slate-500 text-xs line-clamp-2 mb-4">{post.desc}</p>
+                              <a href="#" className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Đọc tiếp</a>
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+               </section>
+
+               {/* Category 2: Solutions (List Layout) */}
+               <section>
+                  <div className="flex items-center gap-4 mb-8">
+                     <div className="w-2 h-8 bg-blue-600"></div>
+                     <h3 className="font-display text-2xl md:text-3xl font-bold text-white uppercase">Giải pháp Ngành</h3>
+                     <div className="flex-1 h-px bg-white/10"></div>
+                     <a href="#" className="text-xs font-mono uppercase text-slate-500 hover:text-white flex items-center gap-2">View All <ArrowUpRight size={14}/></a>
+                  </div>
+
+                  <div className="space-y-4">
+                     {solutionPosts.map((post, idx) => (
+                        <div key={idx} className="group flex items-center justify-between p-6 bg-[#0A0A0A] border-l-2 border-white/10 hover:border-blue-600 hover:bg-[#0F172A] transition-all cursor-pointer">
+                           <div className="flex-1 pr-4">
+                              <div className="flex items-center gap-3 mb-2">
+                                 <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">{post.tag}</span>
+                                 <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
+                                 <span className="text-[10px] text-slate-500 font-mono">{post.date}</span>
+                              </div>
+                              <h4 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">{post.title}</h4>
+                           </div>
+                           <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-500 group-hover:border-blue-500 group-hover:text-white transition-all">
+                              <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform"/>
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+               </section>
+
+            </div>
+
+            {/* ================= RIGHT SIDEBAR ================= */}
+            <div className="w-full lg:w-1/4 space-y-12">
+               
+               {/* Search Widget */}
+               <div className="relative">
+                  <input type="text" placeholder="Tìm kiếm bài viết..." className="w-full bg-[#0A0A0A] border border-white/10 text-white text-xs px-4 py-4 btn-cut focus:outline-none focus:border-orange-500 transition-colors"/>
+                  <Search size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"/>
+               </div>
+
+               {/* Trending Tags */}
+               <div>
+                  <h4 className="font-bold text-white uppercase text-xs tracking-widest mb-6 flex items-center gap-2"><Tag size={14} className="text-orange-500"/> Trending Tags</h4>
+                  <div className="flex flex-wrap gap-2">
+                     {['#AI', '#SmartCity', '#Retail', '#DeepLearning', '#TavaLED', '#Security', '#IoT', '#BigData'].map(tag => (
+                        <span key={tag} className="px-3 py-1.5 bg-[#0A0A0A] border border-white/10 text-slate-400 text-[10px] font-mono hover:border-orange-500 hover:text-white cursor-pointer transition-all">
+                           {tag}
+                        </span>
+                     ))}
+                  </div>
+               </div>
+
+               {/* Most Popular (Sidebar List) */}
+               <div>
+                  <h4 className="font-bold text-white uppercase text-xs tracking-widest mb-6 flex items-center gap-2"><Activity size={14} className="text-orange-500"/> Xem nhiều nhất</h4>
+                  <ul className="space-y-6">
+                     {[1, 2, 3].map((item) => (
+                        <li key={item} className="group cursor-pointer">
+                           <span className="text-[40px] font-black text-white/5 leading-none absolute -ml-4 -mt-2 group-hover:text-orange-500/10 transition-colors">0{item}</span>
+                           <h5 className="text-sm font-bold text-slate-200 relative z-10 group-hover:text-orange-500 transition-colors line-clamp-2">Hướng dẫn thiết lập hàng rào ảo Polygon Zone trên Tava VMS</h5>
+                           <span className="text-[10px] text-slate-500 mt-1 block">1.2k views</span>
+                        </li>
+                     ))}
+                  </ul>
+               </div>
+
+               {/* Banner Ad */}
+               <div className="relative aspect-[3/4] cyber-cut overflow-hidden bg-slate-900 group cursor-pointer">
+                  <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700 grayscale" alt="Ad"/>
+                  <div className="absolute inset-0 bg-gradient-to-t from-orange-900/80 to-transparent p-6 flex flex-col justify-end items-center text-center">
+                     <span className="text-white font-black text-2xl uppercase mb-2">TavaVision <br/>Eagle Eye</span>
+                     <p className="text-orange-200 text-xs mb-6">Camera AI thế hệ mới với khả năng nhìn đêm có màu.</p>
+                     <button className="px-6 py-2 bg-white text-black btn-cut text-xs font-bold uppercase hover:bg-orange-500 hover:text-white transition-colors">Khám phá ngay</button>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </main>
+
+      {/* ================= FOOTER (Reused) ================= */}
+      <footer className="bg-[#020202] text-slate-400 font-sans border-t border-white/10 pt-20 pb-10 text-xs">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between gap-12 mb-20 border-b border-white/5 pb-12">
+             <div className="max-w-xs">
+                <div className="flex items-center gap-3 mb-6">
+                   <div className="w-10 h-10 btn-cut bg-orange-600 flex items-center justify-center text-white"><Scan size={20} strokeWidth={2} /></div>
+                   <h2 className="text-2xl font-bold text-white tracking-tight uppercase font-display">TAVA<span className="text-orange-600">VISION</span></h2>
+                </div>
+                <p className="leading-relaxed mb-6 text-[11px]">Professional AI Security. Kiến tạo sự an tâm thông qua công nghệ.</p>
+                <div className="flex gap-4">
+                   {[1,2,3].map(i => <div key={i} className="w-8 h-8 btn-cut bg-white/5 flex items-center justify-center hover:bg-orange-600 hover:text-white transition-colors cursor-pointer"><Globe size={14}/></div>)}
+                </div>
+             </div>
+             
+             <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
+                <div>
+                   <h4 className="text-white font-bold uppercase mb-6 tracking-widest text-[10px]">Sản phẩm</h4>
+                   <ul className="space-y-3">
+                      {['Camera AI', 'TavaLED', 'VMS Software', 'Cloud Storage'].map(item => <li key={item}><a href="#" className="hover:text-white transition-colors uppercase text-[10px] font-medium">{item}</a></li>)}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-white font-bold uppercase mb-6 tracking-widest text-[10px]">Công ty</h4>
+                   <ul className="space-y-3">
+                      {['Về chúng tôi', 'Tuyển dụng', 'Tin tức', 'Liên hệ'].map(item => <li key={item}><a href="#" className="hover:text-white transition-colors uppercase text-[10px] font-medium">{item}</a></li>)}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-white font-bold uppercase mb-6 tracking-widest text-[10px]">Văn phòng</h4>
+                   <p className="mb-2"><strong className="text-white">Hà Nội:</strong> Lô 5 - TT7, Thanh Trì</p>
+                   <p><strong className="text-white">TP.HCM:</strong> Quận 7</p>
+                </div>
+             </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+             <p className="text-[10px] uppercase tracking-wide">© 2026 TavaVision. All rights reserved.</p>
+             <div className="flex gap-6 uppercase font-bold tracking-wider text-[10px]">
+                <a href="#" className="hover:text-white">Privacy</a>
+                <a href="#" className="hover:text-white">Terms</a>
+             </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  );
+};
+
+export default BlogListing;

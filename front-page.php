@@ -1,584 +1,1142 @@
 <?php
 /**
- * The front page template file - Premium Redesign
+ * TavaVision - Cyber Edition
+ * Compatible with Theme Header/Footer + Light/Dark Mode
+ * @package TavaCam
  */
-
 get_header();
-
-// Centralized Content Data for consistency
-$hero_slides = [
-    [
-        'img' => 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=2070&auto=format&fit=crop',
-        'sub' => 'An ninh thông minh',
-        'title' => 'Tava Smart Camera',
-        'desc' => 'Giải pháp giám sát AI hàng đầu cho gia đình và doanh nghiệp.'
-    ],
-    [
-        'img' => 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
-        'sub' => 'Công nghệ đột phá',
-        'title' => 'Trải nghiệm 4K Ultra HD',
-        'desc' => 'Từng chi tiết sắc nét, quan sát ban đêm có màu sinh động.'
-    ],
-    [
-        'img' => 'https://images.unsplash.com/photo-1558002038-10917738179d?q=80&w=2070&auto=format&fit=crop',
-        'sub' => 'Kết nối mọi nơi',
-        'title' => 'Tava Cloud Storage',
-        'desc' => 'Lưu trữ đám mây bảo mật, truy cập dữ liệu mọi lúc mọi nơi.'
-    ]
-];
-
-$features_flip = [
-    ['icon' => 'shield-check', 'title' => 'Bảo mật tuyệt đối', 'img' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80', 'desc' => 'Mã hóa dữ liệu 2 lớp theo tiêu chuẩn quốc tế, bảo vệ quyền riêng tư tối đa.'],
-    ['icon' => 'cpu', 'title' => 'Trí tuệ nhân tạo AI', 'img' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80', 'desc' => 'Phát hiện chuyển động của người và vật chính xác, giảm thiểu báo động giả.'],
-    ['icon' => 'cloud-lightning', 'title' => 'Lưu trữ Cloud', 'img' => 'https://images.unsplash.com/photo-1544197150-b99a580bbcbf?auto=format&fit=crop&q=80', 'desc' => 'Dữ liệu lưu trữ tại Việt Nam, tốc độ truy xuất nhanh và ổn định.'],
-    ['icon' => 'smartphone', 'title' => 'Ứng dụng thuần Việt', 'img' => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80', 'desc' => 'Giao diện mượt mà, dễ sử dụng, hỗ trợ kỹ thuật 24/7.']
-];
 ?>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<div class="bg-white dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden">
-
-    <!-- ============================================
-         HERO SECTION - Premium Redesign
-         ============================================ -->
-    <section class="relative bg-slate-950">
-        <div class="swiper mainHeroSwiper h-[650px] md:h-[900px]">
-            <div class="swiper-wrapper">
-                <?php foreach ($hero_slides as $idx => $slide): ?>
-                    <div class="swiper-slide relative overflow-hidden group">
-                        <!-- Background Image with Ken Burns Effect -->
-                        <div class="absolute inset-0">
-                            <img src="<?php echo $slide['img']; ?>"
-                                class="w-full h-full object-cover transform scale-110 group-hover:scale-105 transition-transform duration-[8s] ease-out"
-                                alt="Hero">
-                            <!-- Multi-layer Gradient Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent">
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent">
-                            </div>
-                            <!-- Animated Accent Gradient -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-br from-orange-600/10 via-transparent to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-                            </div>
-                        </div>
-
-                        <!-- Content Container -->
-                        <div class="relative h-full flex items-center">
-                            <div class="container mx-auto px-6 lg:px-12">
-                                <div class="max-w-3xl">
-                                    <!-- Animated Badge -->
-                                    <div
-                                        class="inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 to-orange-500 text-white text-[11px] font-bold uppercase tracking-[0.15em] px-5 py-2.5 rounded-full mb-8 shadow-xl shadow-orange-500/30 backdrop-blur-sm border border-white/10 animate-fade-in-up">
-                                        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-                                        <span><?php echo $slide['sub']; ?></span>
-                                    </div>
-
-                                    <!-- Main Title with Gradient -->
-                                    <h1
-                                        class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.05] tracking-tighter animate-fade-in-up animation-delay-100">
-                                        <span
-                                            class="bg-gradient-to-r from-white via-white to-gray-300 bg-clip-text text-transparent">
-                                            <?php echo $slide['title']; ?>
-                                        </span>
-                                    </h1>
-
-                                    <!-- Description -->
-                                    <p
-                                        class="text-base md:text-lg text-gray-300 mb-10 font-medium max-w-2xl leading-relaxed animate-fade-in-up animation-delay-200">
-                                        <?php echo $slide['desc']; ?>
-                                    </p>
-
-                                    <!-- CTAs with Enhanced Hover -->
-                                    <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-300">
-                                        <a href="#"
-                                            class="group/cta inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white text-sm font-bold uppercase tracking-wider rounded-full hover:from-orange-700 hover:to-orange-600 transition-all duration-300 shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/60 hover:scale-105 active:scale-95 transform">
-                                            <span>Khám phá ngay</span>
-                                            <i data-lucide="arrow-right"
-                                                class="w-4 h-4 group-hover/cta:translate-x-1 transition-transform"></i>
-                                        </a>
-                                        <a href="#"
-                                            class="group/cta inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold border-2 border-white/40 hover:bg-white hover:text-slate-900 hover:border-white transition-all duration-300 backdrop-blur-md hover:backdrop-blur-xl bg-white/5 hover:shadow-2xl hover:scale-105 active:scale-95 transform text-white">
-                                            <i data-lucide="grid-3x3" class="w-4 h-4"></i>
-                                            <span>Xem sản phẩm</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Decorative Elements -->
-                        <div
-                            class="absolute top-20 right-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-                        </div>
-                        <div
-                            class="absolute bottom-20 left-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animation-delay-300">
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-            <!-- Custom Pagination -->
-            <div class="swiper-pagination !bottom-12 flex justify-center gap-3"></div>
-
-            <!-- Scroll Indicator -->
-            <div
-                class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors animate-bounce">
-                <span class="text-xs uppercase tracking-widest font-bold">Cuộn xuống</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================================
-         WHY CHOOSE - Premium Cards
-         ============================================ -->
-    <section
-        class="py-32 md:py-40 bg-gradient-to-b from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500 relative overflow-hidden">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-5 dark:opacity-10">
-            <div class="absolute top-20 left-10 w-96 h-96 bg-orange-600 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
-        </div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <!-- Section Header -->
-            <div class="text-center max-w-4xl mx-auto mb-24">
-                <span class="section-subtitle inline-flex items-center gap-2">
-                    <i data-lucide="award" class="w-4 h-4"></i>
-                    Tại sao nên chọn chúng tôi
-                </span>
-                <h2 class="section-title mt-4 mb-6">Điểm khác biệt của <span class="text-[#f84b2f]">Tava Camera</span>
-                </h2>
-                <div
-                    class="w-24 h-1.5 bg-gradient-to-r from-transparent via-orange-600 to-transparent mx-auto rounded-full mb-6">
-                </div>
-                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-                    Chúng tôi cam kết mang đến giải pháp an ninh toàn diện với công nghệ tiên tiến nhất
-                </p>
-            </div>
-
-            <!-- Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-                <?php
-                $why_data = [
-                    [
-                        'img' => 'https://fptcameraiq.vn/storage/trang-chu/full-hd-1080.jpg',
-                        'title' => 'Made by FPT <br> Made in Việt Nam',
-                        'desc' => 'Độ phân giải Full HD 1080p. Hiển thị tốt trong điều kiện thiếu sáng. Xem trực tuyến độ trễ gần như bằng 0.',
-                        'icon' => '<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M45 68.25H27C10.71 68.25 3.75 61.29 3.75 45V27C3.75 10.71 10.71 3.75 27 3.75H45C61.29 3.75 68.25 10.71 68.25 27V45C68.25 61.29 61.29 68.25 45 68.25ZM27 8.25C13.17 8.25 8.25 13.17 8.25 27V45C8.25 58.83 13.17 63.75 27 63.75H45C58.83 63.75 63.75 58.83 63.75 45V27C63.75 13.17 58.83 8.25 45 8.25H27Z" fill="currentColor"></path><path d="M64.4401 23.5801H7.56006C6.33006 23.5801 5.31006 22.5601 5.31006 21.3301C5.31006 20.1001 6.30006 19.0801 7.56006 19.0801H64.4401C65.6701 19.0801 66.6901 20.1001 66.6901 21.3301C66.6901 22.5601 65.7001 23.5801 64.4401 23.5801Z" fill="currentColor"></path><path d="M25.5601 23.1601C24.3301 23.1601 23.3101 22.1401 23.3101 20.9101V6.33008C23.3101 5.10008 24.3301 4.08008 25.5601 4.08008C26.7901 4.08008 27.8101 5.10008 27.8101 6.33008V20.9101C27.8101 22.1401 26.7901 23.1601 25.5601 23.1601Z" fill="currentColor"></path><path d="M46.4399 21.8101C45.2099 21.8101 44.1899 20.7901 44.1899 19.5601V6.33008C44.1899 5.10008 45.2099 4.08008 46.4399 4.08008C47.6699 4.08008 48.6899 5.10008 48.6899 6.33008V19.5601C48.6899 20.8201 47.6999 21.8101 46.4399 21.8101Z" fill="currentColor"></path><path d="M32.4311 53.225C31.3511 53.225 30.3311 52.955 29.4011 52.445C27.3611 51.245 26.1611 48.845 26.1611 45.815V38.615C26.1611 35.585 27.3611 33.155 29.4311 31.955C31.5011 30.755 34.2011 30.935 36.8111 32.465L43.0511 36.065C45.6611 37.565 47.1911 39.815 47.1911 42.215C47.1911 44.615 45.6611 46.865 43.0211 48.365L36.7811 51.965C35.3411 52.805 33.8411 53.225 32.4311 53.225ZM32.4611 35.675C32.1611 35.675 31.8911 35.735 31.6811 35.855C31.0511 36.215 30.6611 37.235 30.6611 38.615V45.815C30.6611 47.165 31.0511 48.185 31.6811 48.575C32.3111 48.935 33.3911 48.755 34.5611 48.065L40.8011 44.465C41.9711 43.775 42.6911 42.935 42.6911 42.215C42.6911 41.495 42.0011 40.655 40.8011 39.965L34.5611 36.365C33.7811 35.915 33.0311 35.675 32.4611 35.675Z" fill="currentColor"></path></svg>'
-                    ],
-                    [
-                        'img' => 'https://fptcameraiq.vn/storage/trang-chu/cloud-server.jpg',
-                        'title' => 'Giải pháp toàn diện <br> Tiên phong công nghệ',
-                        'desc' => 'Lưu trữ Cloud của FPT, chuẩn Tier III. Không phụ thuộc phần cứng, bảo mật 2 lớp tuyệt đối.',
-                        'icon' => '<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M35.9995 68.2502C35.2795 68.2502 34.5596 68.1602 33.8696 67.9502C18.2996 63.6602 7.01953 49.1101 7.01953 33.3301V20.1601C7.01953 16.8001 9.44955 13.1702 12.5695 11.8802L29.2796 5.04015C33.6296 3.27015 38.3995 3.27015 42.7195 5.04015L59.4295 11.8802C62.5495 13.1702 64.9796 16.8001 64.9796 20.1601V33.3301C64.9796 49.0801 53.6695 63.6302 38.1295 67.9502C37.4395 68.1602 36.7195 68.2502 35.9995 68.2502ZM35.9995 8.25017C34.2895 8.25017 32.6095 8.58022 30.9895 9.24022L14.2796 16.0801C12.8396 16.6801 11.5195 18.6301 11.5195 20.1901V33.3602C11.5195 47.1302 21.4195 59.8502 35.0695 63.6302C35.6695 63.8102 36.3295 63.8102 36.9295 63.6302C50.5795 59.8502 60.4796 47.1302 60.4796 33.3602V20.1901C60.4796 18.6301 59.1595 16.6801 57.7195 16.0801L41.0096 9.24022C39.3896 8.588022 37.7095 8.25017 35.9995 8.25017Z" fill="currentColor"></path><path d="M36 39.75C31.44 39.75 27.75 36.06 27.75 31.5C27.75 26.94 31.44 23.25 36 23.25C40.56 23.25 44.25 26.94 44.25 31.5C44.25 36.06 40.56 39.75 36 39.75ZM36 27.75C33.93 27.75 32.25 29.43 32.25 31.5C32.25 33.57 33.93 35.25 36 35.25C38.07 35.25 39.75 33.57 39.75 31.5C39.75 29.43 38.07 27.75 36 27.75Z" fill="currentColor"></path><path d="M36 48.75C34.77 48.75 33.75 47.73 33.75 46.5V37.5C33.75 36.27 34.77 35.25 36 35.25C37.23 35.25 38.25 36.27 38.25 37.5V46.5C38.25 47.73 37.23 48.75 36 48.75Z" fill="currentColor"></path></svg>'
-                    ],
-                    [
-                        'img' => 'https://fptcameraiq.vn/storage/trang-chu/ai-thong-minh.jpg',
-                        'title' => 'Hạ tầng viễn thông <br> Hàng đầu khu vực',
-                        'desc' => 'Công nghệ trí tuệ nhân tạo phân biệt chuyển động của con người và vật thể chính xác.',
-                        'icon' => '<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 33.75H46.5C47.73 33.75 48.75 32.73 48.75 31.5C48.75 30.27 47.73 29.25 46.5 29.25H25.5C24.27 29.25 23.25 30.27 23.25 31.5C23.25 32.73 24.27 33.75 25.5 33.75Z" fill="currentColor"></path><path d="M24 66.9598C25.02 66.9598 26.04 66.6599 26.91 66.0899L39.69 57.5698H51C61.32 57.5698 68.25 50.6398 68.25 40.3198V22.3198C68.25 11.9998 61.32 5.06982 51 5.06982H21C10.68 5.06982 3.75 11.9998 3.75 22.3198V40.3198C3.75 49.8598 9.69 56.5199 18.75 57.4499V61.7098C18.75 63.6598 19.8 65.4298 21.51 66.3298C22.29 66.7498 23.16 66.9598 24 66.9598ZM51 9.53979C58.74 9.53979 63.75 14.5498 63.75 22.2898V40.2898C63.75 48.0298 58.74 53.0398 51 53.0398H39C38.55 53.0398 38.13 53.1598 37.74 53.4298L24.39 62.3099C24.06 62.5199 23.76 62.4299 23.61 62.3399C23.46 62.2499 23.22 62.0698 23.22 61.6798V55.2898C23.22 54.0598 22.2 53.0398 20.97 53.0398C13.23 53.0398 8.21997 48.0298 8.21997 40.2898V22.2898C8.21997 14.5498 13.23 9.53979 20.97 9.53979H51Z" fill="currentColor"></path></svg>'
-                    ],
-                    [
-                        'img' => 'https://fptcameraiq.vn/storage/trang-chu/cskh-fpt.jpg',
-                        'title' => 'Dịch vụ CSKH <br> Hàng đầu Việt Nam',
-                        'desc' => 'Hỗ trợ kỹ thuật 24/7 tại 63 tỉnh thành. Miễn phí bảo trì trọn đời và đổi mới thiết bị 24 tháng.',
-                        'icon' => '<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.8"><path d="M36 68.2499C34.2 68.2499 32.43 67.8299 30.99 67.0199L16.8 58.8299C10.92 54.8699 10.53 54.1499 10.53 47.9399V33.0599C10.53 26.8499 10.92 26.1299 16.68 22.2599L31.02 13.9799C33.87 12.3299 38.16 12.3299 41.01 13.9799L55.2 22.1699C61.08 26.1299 61.47 26.8499 61.47 33.0599V47.9399C61.47 54.1499 61.08 54.8699 55.32 58.7399L40.98 67.0199C39.57 67.8599 37.77 68.2499 36 68.2499ZM36 17.2499C34.98 17.2499 33.96 17.4599 33.24 17.8799L19.05 26.0699C15.03 28.7999 15.03 28.7999 15.03 33.0599V47.9399C15.03 52.1999 15.03 52.1999 19.2 55.0199L33.27 63.1199C34.71 63.9599 37.32 63.9599 38.76 63.1199L52.95 54.9299C56.97 52.1999 56.97 52.1999 56.97 47.9399V33.0599C56.97 28.7999 56.97 28.7999 52.8 25.9799L38.73 17.8799C38.04 17.4599 37.02 17.2499 36 17.2499Z" fill="currentColor"></path><path d="M52.5 25.14C51.27 25.14 50.25 24.12 50.25 22.89V15C50.25 10.26 48.24 8.25 43.5 8.25H28.5C23.76 8.25 21.75 10.26 21.75 15V22.68C21.75 23.91 20.73 24.93 19.5 24.93C18.27 24.93 17.25 23.94 17.25 22.68V15C17.25 7.74 21.24 3.75 28.5 3.75H43.5C50.76 3.75 54.75 7.74 54.75 15V22.89C54.75 24.12 53.73 25.14 52.5 25.14Z" fill="currentColor"></path><path d="M40.89 52.8901C40.26 52.8901 39.6 52.7701 38.94 52.5001L36 51.3601L33.06 52.5301C31.47 53.1601 29.85 53.0101 28.65 52.1401C27.45 51.2701 26.82 49.7701 26.91 48.0601L27.09 44.9101L25.08 42.4801C24 41.1301 23.64 39.5701 24.12 38.1301C24.57 36.7201 25.8 35.6401 27.45 35.2201L30.51 34.4401L32.22 31.7701C34.05 28.8901 37.98 28.8901 39.81 31.7701L41.52 34.4401L44.58 35.2201C46.23 35.6401 47.46 36.7201 47.91 38.1301C48.36 39.5401 48 41.1301 46.92 42.4501L44.91 44.8801L45.09 48.0301C45.18 49.7401 44.55 51.2101 43.35 52.1101C42.63 52.6201 41.79 52.8901 40.89 52.8901ZM28.56 39.6001L30.57 42.0301C31.26 42.8401 31.65 44.1301 31.59 45.1801L31.41 48.3301L34.35 47.1601C35.34 46.7701 36.66 46.7701 37.65 47.1601L40.59 48.3301L40.41 45.1801C40.35 44.1301 40.74 42.8701 41.43 42.0301L43.44 39.6001L40.38 38.8201C39.36 38.5501 38.28 37.7701 37.71 36.9001L36.03 34.2601L34.32 36.9001C33.75 37.8001 32.67 38.5801 31.65 38.8501L28.56 39.6001Z" fill="currentColor"></path></g></svg>'
-                    ]
-                ];
-                foreach ($why_data as $idx => $item):
-                    ?>
-                    <div class="item-why-premium group transform hover:-translate-y-3 transition-all duration-500">
-                        <!-- Image Container with Overlay -->
-                        <div class="avarta relative">
-                            <img src="<?php echo $item['img']; ?>" alt="Why"
-                                class="filter brightness-90 group-hover:brightness-100 transition-all duration-700">
-                            <!-- Gradient Overlay on Hover -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            </div>
-                        </div>
-
-                        <!-- Info Card with Enhanced Shadow -->
-                        <div
-                            class="info-card group-hover:shadow-2xl group-hover:shadow-orange-500/20 transition-all duration-500">
-                            <div
-                                class="icon-wrapper group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                                <?php echo $item['icon']; ?>
-                            </div>
-                            <h4 class="group-hover:text-[#f84b2f] transition-colors duration-300">
-                                <?php echo $item['title']; ?>
-                            </h4>
-                            <p
-                                class="group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors duration-300">
-                                <?php echo $item['desc']; ?>
-                            </p>
-
-                            <!-- Hover Accent Line -->
-                            <div
-                                class="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-orange-600 to-orange-400 group-hover:w-full transition-all duration-500 rounded-full">
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Demo Section -->
-    <section id="video-demo" class="py-32 bg-white dark:bg-slate-950 transition-colors duration-500">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-end justify-between mb-20 gap-8">
-                <div class="max-w-2xl">
-                    <span class="section-subtitle">Trải nghiệm thực tế</span>
-                    <h2 class="section-title">Tính năng AI đột phá</h2>
-                </div>
-                <div
-                    class="flex gap-2 bg-slate-100 dark:bg-white/5 p-1.5 rounded-2xl border border-slate-200 dark:border-white/10 overflow-x-auto no-scrollbar">
-                    <button
-                        class="video-tab whitespace-nowrap px-6 py-3 rounded-xl font-bold transition-all text-sm text-slate-600 dark:text-gray-400"
-                        data-video="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4">Nhận
-                        diện người</button>
-                    <button
-                        class="video-tab whitespace-nowrap px-6 py-3 rounded-xl font-bold transition-all text-sm text-slate-600 dark:text-gray-400 opacity-50 hover:opacity-100"
-                        data-video="https://videos.pexels.com/video-files/5377700/5377700-uhd_2560_1440_25fps.mp4">Khoanh
-                        vùng an ninh</button>
-                    <button
-                        class="video-tab whitespace-nowrap px-6 py-3 rounded-xl font-bold transition-all text-sm text-slate-600 dark:text-gray-400 opacity-50 hover:opacity-100"
-                        data-video="https://videos.pexels.com/video-files/3205368/3205368-uhd_2560_1440_25fps.mp4">Phát
-                        hiện thú cưng</button>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center">
-                <div class="phone-frame-landscape w-full max-w-5xl group">
-                    <video id="feature-video" class="w-full h-full object-cover" muted playsinline preload="none"
-                        poster="https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=1000&fit=crop">
-                        <source data-src="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div id="video-overlay"
-                        class="absolute inset-0 bg-slate-100 dark:bg-slate-900 flex items-center justify-center opacity-0 transition-opacity">
-                        <div class="w-10 h-10 border-4 border-[#f84b2f] border-t-transparent rounded-full animate-spin">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product Showcase (Sync with FPT Style) -->
-    <section class="py-32 bg-white dark:bg-slate-950">
-        <div class="container mx-auto px-6">
-            <div
-                class="bg-white dark:bg-slate-900 rounded-[48px] overflow-hidden shadow-2xl border border-slate-100 dark:border-slate-800">
-                <div class="bg-gradient-to-r from-[#f84b2f] to-[#ff6b52] p-10 text-center">
-                    <h2 class="text-3xl md:text-4xl font-black text-white italic uppercase tracking-wider">Hệ sinh thái
-                        Camera AI</h2>
-                </div>
-
-                <div class="flex flex-col lg:flex-row p-8 md:p-16 gap-16">
-                    <div class="w-full lg:w-1/2">
-                        <div class="flex flex-wrap gap-3 mb-12" id="product-tabs">
-                            <button
-                                class="product-tab active px-6 py-3 rounded-full font-bold border-2 border-slate-100 dark:border-slate-800 transition-all whitespace-nowrap text-sm"
-                                data-product="dome-5i">AI Dome 5I</button>
-                            <button
-                                class="product-tab px-6 py-3 rounded-full font-bold border-2 border-slate-100 dark:border-slate-800 transition-all whitespace-nowrap text-sm"
-                                data-product="bullet-5i">AI Bullet 5I</button>
-                        </div>
-                        <h3 id="product-title" class="text-4xl font-black text-slate-900 dark:text-white mb-10">Tava AI
-                            Dome 5I</h3>
-                        <div id="product-specs" class="grid grid-cols-1 gap-4">
-                            <!-- Injected JS -->
-                        </div>
-                    </div>
-
-                    <div class="w-full lg:w-1/2 flex flex-col">
-                        <div
-                            class="bg-slate-50 dark:bg-slate-800/50 rounded-[32px] p-12 aspect-square flex items-center justify-center relative mb-8 group">
-                            <img id="main-product-img" src=""
-                                class="max-w-[80%] max-h-[80%] object-contain transition-transform duration-700 group-hover:scale-110"
-                                alt="Product">
-                            <div id="gallery-counter"
-                                class="absolute bottom-8 right-8 bg-white/90 dark:bg-slate-800 px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
-                                1 / 5</div>
-                            <button id="prev-gallery"
-                                class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-slate-800 shadow-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"><i
-                                    data-lucide="chevron-left"></i></button>
-                            <button id="next-gallery"
-                                class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-slate-800 shadow-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"><i
-                                    data-lucide="chevron-right"></i></button>
-                        </div>
-                        <div id="thumbnail-row" class="flex gap-4 justify-center"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Feature ZigZag -->
-    <section>
-        <?php
-        $rows = [
-            ['title' => 'Tự hào Made in Vietnam', 'sub' => 'Vận hành tin cậy', 'img' => 'https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80', 'side' => 'right'],
-            ['title' => 'Tư vấn tận tâm 24/7', 'sub' => 'Dịch vụ hoàn hảo', 'img' => 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80', 'side' => 'left'],
-        ];
-        foreach ($rows as $idx => $row):
-            $is_left = $row['side'] === 'left';
-            ?>
-            <div class="flex flex-col md:flex-row items-stretch min-h-[500px] md:h-[650px]">
-                <div
-                    class="w-full md:w-1/2 flex items-center p-12 md:p-24 <?php echo $is_left ? 'order-2' : 'order-1'; ?> bg-white dark:bg-slate-950">
-                    <div>
-                        <span class="section-subtitle"><?php echo $row['sub']; ?></span>
-                        <h2 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-8">
-                            <?php echo $row['title']; ?>
-                        </h2>
-                        <p class="text-slate-500 dark:text-slate-400 text-lg mb-10 max-w-md">Đội ngũ kỹ thuật viên giàu kinh
-                            nghiệm luôn sẵn sàng hỗ trợ lắp đặt và bảo trì định kỳ, đảm bảo hệ thống an ninh của bạn luôn ở
-                            trạng thái tốt nhất.</p>
-                        <a href="#" class="btn-primary w-fit">Tìm hiểu sản phẩm</a>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 <?php echo $is_left ? 'order-1' : 'order-2'; ?> overflow-hidden">
-                    <img src="<?php echo $row['img']; ?>"
-                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-[2s]" alt="Feature">
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </section>
-
-    <!-- Algorithms -->
-    <section class="py-32 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500">
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-24">
-                <span class="section-subtitle">Thuật toán thông minh</span>
-                <h2 class="section-title italic">Hệ điều hành Tava AI OS</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <?php foreach (['FaceID v3', 'Hàng rào ảo AI', 'Báo động âm thanh'] as $algo): ?>
-                    <div
-                        class="bg-white dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-12 rounded-[40px] hover:bg-white/80 dark:hover:bg-white/10 transition-all duration-500 group shadow-sm hover:shadow-xl">
-                        <div
-                            class="w-16 h-16 rounded-2xl bg-[#f84b2f]/10 text-[#f84b2f] flex items-center justify-center mb-8 border border-[#f84b2f]/20 group-hover:rotate-12 transition-transform">
-                            <i data-lucide="zap" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4"><?php echo $algo; ?></h3>
-                        <p class="text-slate-500 dark:text-slate-400 leading-relaxed">Công nghệ xử lý Neural Processing Unit
-                            tích hợp trực tiếp, cho kết quả phản hồi chỉ trong mili giây.</p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- App Promotion (Phone Mockup) -->
-    <section class="py-32 bg-slate-50 dark:bg-slate-900 overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-24">
-                <div class="w-full lg:w-1/2">
-                    <span class="section-subtitle">Tava Smart Vision App</span>
-                    <h2 class="section-title mb-8">Một chạm - Kết nối vạn giải pháp</h2>
-                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-12">Ứng dụng được phát triển bởi đội ngũ kỹ
-                        sư Việt, tối ưu trải nghiệm người dùng với tốc độ load cực nhanh và tính bảo mật tuyệt đối.</p>
-                    <div class="flex flex-col gap-6 mb-12">
-                        <div class="flex gap-4 items-center">
-                            <div
-                                class="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl shadow-lg flex items-center justify-center text-[#f84b2f]">
-                                <i data-lucide="shield"></i>
-                            </div>
-                            <span class="font-bold text-slate-800 dark:text-white">Bảo mật đa lớp xác thực
-                                OTP/Biometric</span>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <div
-                                class="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl shadow-lg flex items-center justify-center text-[#f84b2f]">
-                                <i data-lucide="message-circle"></i>
-                            </div>
-                            <span class="font-bold text-slate-800 dark:text-white">Thông báo trạng thái theo thời gian
-                                thực</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-4">
-                        <img src="https://fptcameraiq.vn/images/badge-ios.png" class="h-14 cursor-pointer"
-                            alt="AppStore">
-                        <img src="https://fptcameraiq.vn/images/badge-android.png" class="h-14 cursor-pointer"
-                            alt="GooglePlay">
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <div class="phone-frame-portrait">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80"
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Latest News -->
-    <section class="py-32 bg-white dark:bg-slate-950">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-end mb-16">
-                <div>
-                    <span class="section-subtitle">Blog & News</span>
-                    <h2 class="section-title">Góc nhìn chuyên gia</h2>
-                </div>
-                <a href="/blog"
-                    class="p-4 rounded-full border border-slate-100 hover:border-[#f84b2f] hover:text-[#f84b2f] transition-all"><i
-                        data-lucide="arrow-right"></i></a>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <?php
-                $posts = new WP_Query(['posts_per_page' => 3]);
-                if ($posts->have_posts()):
-                    while ($posts->have_posts()):
-                        $posts->the_post();
-                        ?>
-                        <article
-                            class="group relative bg-white dark:bg-slate-900 rounded-[32px] overflow-hidden border border-slate-50 dark:border-slate-800 hover:shadow-2xl transition-all duration-500">
-                            <div class="aspect-[4/3] overflow-hidden">
-                                <?php the_post_thumbnail('large', ['class' => 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-700']); ?>
-                            </div>
-                            <div class="p-8">
-                                <span
-                                    class="text-[10px] font-bold text-[#f84b2f] uppercase tracking-widest mb-4 block italic"><?php echo get_the_date(); ?></span>
-                                <h3
-                                    class="text-xl font-black text-slate-900 dark:text-white group-hover:text-[#f84b2f] transition-colors mb-4 line-clamp-2">
-                                    <?php the_title(); ?>
-                                </h3>
-                                <p class="text-slate-500 text-sm line-clamp-2 mb-8"><?php echo get_the_excerpt(); ?></p>
-                                <a href="<?php the_permalink(); ?>"
-                                    class="flex items-center gap-2 font-black text-sm uppercase tracking-wider text-slate-900 dark:text-white border-b-2 border-slate-900/5 hover:border-[#f84b2f] transition-all w-fit">Đọc
-                                    tiếp <i data-lucide="chevron-right" class="w-4 h-4 text-[#f84b2f]"></i></a>
-                            </div>
-                        </article>
-                    <?php endwhile;
-                    wp_reset_postdata();
-                endif; ?>
-            </div>
-        </div>
-    </section>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Swiper
-        new Swiper(".mainHeroSwiper", {
-            effect: "fade",
-            speed: 1000,
-            autoplay: { delay: 5000 },
-            pagination: { el: ".swiper-pagination", clickable: true }
-        });
-
-        // 2. Video Tabs
-        const vTabs = document.querySelectorAll('.video-tab');
-        const vPlayer = document.getElementById('feature-video');
-        const vOverlay = document.getElementById('video-overlay');
-
-        vTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                vTabs.forEach(t => {
-                    t.classList.remove('active', 'bg-white', 'text-slate-900', 'shadow-xl', 'bg-[#f84b2f]', 'text-white');
-                    t.classList.add('opacity-50');
-                });
-
-                tab.classList.add('active', 'bg-[#f84b2f]', 'text-white', 'shadow-xl');
-                tab.classList.remove('opacity-50');
-
-                const src = tab.dataset.video;
-                vOverlay.classList.remove('opacity-0');
-                vPlayer.src = src;
-                vPlayer.load();
-                vPlayer.oncanplay = () => { vOverlay.classList.add('opacity-0'); vPlayer.play(); };
-            });
-        });
-        // Init first tab style
-        if (vTabs[0]) {
-            vTabs[0].classList.add('bg-[#f84b2f]', 'text-white', 'shadow-xl');
-            vTabs[0].classList.remove('opacity-50');
-        }
-
-        // 3. Product Showcase
-        const productData = {
-            'dome-5i': {
-                title: 'Tava AI Dome 5I',
-                specs: [['Ống kính', '3.6mm'], ['Độ phân giải', '5.0 MP'], ['Cảm biến', 'Sony Starvis'], ['Vỏ', 'Hợp kim']],
-                images: ['https://doanhnghiep.fptcameraiq.vn/_next/image?url=%2Fimages%2Fhome%2Fcamera%2FDome5I_Housing(2).png&w=1080&q=100', 'https://doanhnghiep.fptcameraiq.vn/_next/image?url=%2Fimages%2Fhome%2Fcamera%2FDome5I_Housing(3).png&w=1080&q=100']
-            },
-            'bullet-5i': {
-                title: 'Tava AI Bullet 5I',
-                specs: [['Tầm xa hồng ngoại', '50m'], ['Chuẩn kháng nước', 'IP67'], ['Chống va đập', 'IK10']],
-                images: ['https://doanhnghiep.fptcameraiq.vn/_next/image?url=%2Fimages%2Fhome%2Fcamera%2FBullet5i_Housing(1).png&w=1080&q=100']
-            }
-        };
-
-        let curProd = 'dome-5i';
-        let curIdx = 0;
-
-        const updateProd = (slug) => {
-            const d = productData[slug];
-            document.getElementById('product-title').textContent = d.title;
-            document.getElementById('product-specs').innerHTML = d.specs.map(s => `
-            <div class="flex justify-between items-center py-4 border-b border-slate-100 dark:border-slate-800">
-                <span class="text-slate-500 font-medium">${s[0]}</span>
-                <span class="font-black text-slate-900 dark:text-white uppercase text-sm">${s[1]}</span>
-            </div>
-        `).join('');
-            curProd = slug; curIdx = 0;
-            updateGal();
-        };
-
-        const updateGal = () => {
-            const d = productData[curProd];
-            document.getElementById('main-product-img').src = d.images[curIdx];
-            document.getElementById('gallery-counter').textContent = `${curIdx + 1} / ${d.images.length}`;
-            document.getElementById('thumbnail-row').innerHTML = d.images.map((img, i) => `
-            <div class="w-20 h-20 rounded-2xl border-2 transition-all cursor-pointer overflow-hidden ${i === curIdx ? 'border-[#f84b2f] scale-110 shadow-lg' : 'border-transparent opacity-40'}" onclick="window.setGal(${i})">
-                <img src="${img}" class="w-full h-full object-contain bg-white dark:bg-slate-800">
-            </div>
-        `).join('');
-        };
-
-        window.setGal = (i) => { curIdx = i; updateGal(); };
-        document.getElementById('next-gallery').onclick = () => { curIdx = (curIdx + 1) % productData[curProd].images.length; updateGal(); };
-        document.getElementById('prev-gallery').onclick = () => { curIdx = (curIdx - 1 + productData[curProd].images.length) % productData[curProd].images.length; updateGal(); };
-
-        document.querySelectorAll('.product-tab').forEach(t => {
-            t.onclick = () => {
-                document.querySelectorAll('.product-tab').forEach(x => x.classList.remove('bg-[#f84b2f]', 'text-white', 'border-transparent'));
-                t.classList.add('bg-[#f84b2f]', 'text-white', 'border-transparent');
-                updateProd(t.dataset.product);
-            }
-        });
-
-        updateProd('dome-5i');
-        document.querySelector('.product-tab[data-product="dome-5i"]').classList.add('bg-[#f84b2f]', 'text-white', 'border-transparent');
-
-        // 4. Lazy Video
-        const observer = new IntersectionObserver((es) => {
-            es.forEach(e => {
-                if (e.isIntersecting) {
-                    const v = e.target;
-                    const s = v.querySelector('source');
-                    if (s.dataset.src) { v.src = s.dataset.src; v.load(); v.play(); }
-                    observer.unobserve(v);
-                }
-            });
-        });
-        if (vPlayer) observer.observe(vPlayer);
-    });
-</script>
-
 <style>
-    .active-tab-style {
-        @apply bg-white text-slate-900 shadow-xl;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* CSS Variables - Light Mode Default */
+:root {
+  --primary: #F97316;
+  --primary-dark: #EA580C;
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --bg-panel: rgba(255, 255, 255, 0.85);
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: rgba(0, 0, 0, 0.1);
+  --grid: rgba(0, 0, 0, 0.04);
+}
+
+/* Dark Mode Variables */
+.dark {
+  --bg: #050505;
+  --bg-alt: #0A0A0A;
+  --bg-panel: rgba(20, 20, 20, 0.7);
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --grid: rgba(255, 255, 255, 0.03);
+}
+
+* { box-sizing: border-box; }
+h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+.cyber-main {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  padding-top: 120px; /* Space for fixed header */
+}
+
+/* Cyber Cut - Signature 45° bevel */
+.cyber-cut {
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+.btn-cut {
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+/* Tech Grid Background */
+.bg-tech-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+/* Typography */
+.t-xs { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+.t-sm { font-size: 12px; }
+.t-base { font-size: 14px; line-height: 1.7; }
+.text-muted { color: var(--text-muted); }
+.text-primary { color: var(--primary); }
+.font-mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { background: var(--border); }
+.btn-white { background: white; color: #000; }
+.dark .btn-white { background: white; color: #000; }
+.btn-white:hover { background: var(--primary); color: white; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* === HERO SLIDER === */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  min-height: 550px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.hero-slide.active { opacity: 1; z-index: 10; }
+.hero-slide.active img {
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1; /* Crystal clear in light mode */
+  transform-origin: center center;
+}
+.dark .hero-slide img { opacity: 0.8; filter: grayscale(10%); }
+
+/* Ken Burns Slow Zoom Animation */
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+/* Light Mode - NO overlay, keep image crystal clear */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Dark Mode - Glassmorphism Overlay */
+.dark .hero-overlay {
+  background: linear-gradient(
+    105deg, 
+    rgba(5,5,5,0.4) 0%,
+    rgba(5,5,5,0.25) 25%,
+    rgba(5,5,5,0.1) 50%,
+    transparent 70%
+  );
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+/* === GLASS CONTENT CARD (only wraps text content) === */
+.hero-inner {
+  max-width: 700px;
+  position: relative;
+  /* Light Mode: Subtle Glass Card - 20% opacity */
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 0;
+  padding: 40px;
+  /* Cyber cut shape */
+  clip-path: polygon(
+    20px 0, 100% 0,
+    100% calc(100% - 20px), calc(100% - 20px) 100%,
+    0 100%, 0 20px
+  );
+  box-shadow: 
+    0 25px 50px -12px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+}
+/* Dark Mode: Full dark glass */
+.dark .hero-inner {
+  background: rgba(5,5,5,0.85);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 
+    0 25px 50px -12px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+}
+/* .hero-inner styles moved above with glass card */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid rgba(249,115,22,0.5);
+  background: rgba(249,115,22,0.1);
+  color: var(--primary);
+  font-size: 10px;
+  font-family: monospace;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-tag-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.hero-title {
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  white-space: pre-line;
+  /* Light mode: Solid Black text */
+  color: #000;
+}
+.dark .hero-title {
+  color: #fff;
+}
+.hero-desc {
+  font-size: 14px;
+  /* Light mode: Solid Black text - same as title */
+  color: #000;
+  max-width: 450px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  padding-left: 20px;
+  border-left: 2px solid var(--primary);
+}
+.dark .hero-desc {
+  color: var(--text-muted);
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.hero-nav {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.hero-counter { font-family: monospace; font-size: 12px; }
+.hero-arrows { display: flex; gap: 8px; }
+.hero-arrow {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.hero-arrow:hover { background: var(--primary); border-color: var(--primary); color: white; }
+
+/* === CORE VALUES === */
+.values-section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+.values-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+  gap: 24px;
+}
+.values-label {
+  color: var(--primary);
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.values-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.values-title span { color: var(--text-muted); }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .values-grid { grid-template-columns: 1fr; } }
+
+.value-card {
+  position: relative;
+  height: 280px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+.value-card:hover::before { transform: scaleX(1); }
+.value-card:hover { border-color: rgba(249,115,22,0.5); }
+
+.value-card-inner {
+  position: relative;
+  z-index: 10;
+  padding: 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.value-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.value-icon { color: var(--text-muted); transition: color 0.3s; }
+.value-card:hover .value-icon { color: var(--primary); }
+.value-sub { font-size: 10px; font-family: monospace; color: var(--text-muted); opacity: 0.5; }
+.value-card:hover .value-sub { opacity: 1; }
+.value-title { font-size: 18px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+.value-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; transition: color 0.3s; }
+.value-card:hover .value-desc { color: var(--text); }
+
+/* === HOOK === */
+.hook-section {
+  position: relative;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.hook-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(128,128,128,0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(128,128,128,0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+}
+.hook-content { position: relative; z-index: 10; text-align: center; padding: 0 24px; }
+.hook-title {
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+.hook-title span { color: var(--primary); border-bottom: 2px solid var(--primary); }
+.hook-box {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+.hook-box p { font-size: 13px; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+
+/* === PHONE DEMO === */
+.demo-section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+.demo-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  gap: 20px;
+}
+.demo-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.demo-tab {
+  padding: 10px 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.demo-tab.active { background: var(--primary); border-color: var(--primary); color: white; }
+.demo-tab:hover:not(.active) { border-color: var(--text-muted); color: var(--text); }
+
+/* Phone Frame Horizontal */
+.phone-frame {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  background: #1a1a1a;
+  border-radius: 40px;
+  box-shadow: 0 0 0 6px #2a2a2a, 0 0 0 8px #3a3a3a, 0 20px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.phone-island {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 100px;
+  background: #000;
+  border-radius: 999px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.phone-island-dot { width: 10px; height: 10px; border-radius: 50%; background: #111; border: 1px solid #333; }
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 34px;
+  overflow: hidden;
+  border: 3px solid #000;
+}
+.phone-screen video, .phone-screen img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.7s; }
+.phone-screen.fading video, .phone-screen.fading img { opacity: 0.5; }
+
+.phone-hud {
+  position: absolute;
+  inset: 0;
+  padding: 24px;
+  padding-left: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.phone-hud-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.phone-rec {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(220,38,38,0.2);
+  border: 1px solid #dc2626;
+  color: #dc2626;
+  font-size: 10px;
+  font-family: monospace;
+  border-radius: 999px;
+}
+.phone-rec-dot { width: 5px; height: 5px; background: #dc2626; border-radius: 50%; animation: pulse 1s infinite; }
+.phone-cam { color: rgba(255,255,255,0.5); font-family: monospace; font-size: 10px; }
+.phone-info {
+  align-self: flex-start;
+  max-width: 250px;
+  padding: 14px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(12px);
+  border-left: 2px solid var(--primary);
+  border-radius: 0 6px 6px 0;
+}
+.phone-info h4 { color: var(--primary); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+.phone-info p { color: var(--text-muted); font-size: 10px; line-height: 1.5; }
+.phone-home {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 999px;
+}
+
+/* === ZIGZAG === */
+.zigzag-section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+.zigzag-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.zigzag-row:last-child { margin-bottom: 0; }
+.zigzag-row.reverse { direction: rtl; }
+.zigzag-row.reverse > * { direction: ltr; }
+@media (max-width: 900px) { .zigzag-row, .zigzag-row.reverse { grid-template-columns: 1fr; direction: ltr; } }
+
+.zigzag-img {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.zigzag-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 1.5s;
+}
+.zigzag-img:hover img { filter: grayscale(0%); transform: scale(1.08); }
+.zigzag-img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-top: 1px solid var(--primary);
+  border-left: 1px solid var(--primary);
+  z-index: 10;
+}
+.zigzag-img::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-bottom: 1px solid var(--primary);
+  border-right: 1px solid var(--primary);
+  z-index: 10;
+}
+.zigzag-num {
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--text-muted);
+  opacity: 0.12;
+  line-height: 1;
+  margin-bottom: -16px;
+  font-family: monospace;
+}
+.zigzag-title {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.zigzag-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  padding-left: 20px;
+  border-left: 1px solid var(--text-muted);
+}
+.zigzag-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  transition: color 0.3s;
+  cursor: pointer;
+}
+.zigzag-link:hover { color: var(--text); }
+
+/* === PRODUCTS === */
+.products-section {
+  padding: 100px 0;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+.products-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+.product-tab {
+  padding: 10px 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.product-tab.active { background: var(--primary); border-color: var(--primary); color: white; }
+
+.product-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 450px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+@media (max-width: 900px) { .product-showcase { grid-template-columns: 1fr; } }
+
+.product-image { display: flex; align-items: center; justify-content: center; padding: 40px; }
+.product-image img {
+  max-width: 260px;
+  max-height: 260px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.5s;
+}
+.product-image:hover img { filter: grayscale(0%); }
+
+.product-info {
+  padding: 40px 48px;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg-alt);
+}
+.product-tagline {
+  color: var(--primary);
+  font-size: 10px;
+  font-family: monospace;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.product-name {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.product-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; }
+.product-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+.product-spec { border-top: 1px solid var(--border); padding-top: 10px; }
+.product-spec-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+.product-spec-value { font-size: 13px; font-weight: 700; font-family: monospace; }
+
+/* === APP SECTION === */
+.app-section { padding: 140px 0 100px; border-bottom: 1px solid var(--border); }
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 900px) { .app-grid { grid-template-columns: 1fr; } }
+
+.app-content { order: 2; }
+@media (max-width: 900px) { .app-content { order: 1; } }
+
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: monospace;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.app-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.app-title span { color: var(--primary); }
+.app-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 380px;
+  margin-bottom: 32px;
+  padding-left: 14px;
+  border-left: 2px solid var(--text-muted);
+}
+.app-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.app-phone { order: 1; display: flex; justify-content: center; margin-top: -100px; }
+@media (max-width: 900px) { .app-phone { order: 2; margin-top: 0; } }
+
+.vertical-phone {
+  position: relative;
+  width: 260px;
+  height: 540px;
+  background: #0A0A0A;
+  border-radius: 48px;
+  border: 6px solid #1a1a1a;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+.vertical-phone-island {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 28px;
+  background: #000;
+  border-radius: 999px;
+  z-index: 50;
+}
+.vertical-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 42px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.vertical-phone-screen img { width: 100%; height: 100%; object-fit: cover; }
+.vertical-phone-home {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 4px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 999px;
+}
+
+/* === NEWS === */
+.news-section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+.news-title {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  padding-left: 14px;
+  border-left: 4px solid var(--primary);
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+@media (max-width: 900px) { .news-grid { grid-template-columns: 1fr; } }
+
+.news-card { cursor: pointer; }
+.news-img { height: 200px; overflow: hidden; margin-bottom: 20px; background: var(--bg-alt); }
+.news-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 0.6s;
+}
+.news-card:hover .news-img img { filter: grayscale(0%); transform: scale(1.08); }
+.news-cat {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: monospace;
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.news-headline {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+.news-card:hover .news-headline { color: var(--primary); }
+.news-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+.news-card:hover .news-link { color: var(--primary); }
 </style>
+
+<main class="cyber-main bg-tech-grid">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 1: HERO SLIDER
+═══════════════════════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <div id="hero-slides">
+    <div class="hero-slide active" data-slide="0">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069" alt="Hero 1">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-slide" data-slide="1">
+      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070" alt="Hero 2">
+      <div class="hero-overlay"></div>
+    </div>
+  </div>
+  
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-tag btn-cut">
+          <span class="hero-tag-dot"></span>
+          <span id="hero-tagline">SYSTEM_ONLINE</span>
+        </div>
+        <h1 class="hero-title font-display" id="hero-title">KIẾN TẠO
+TẦM NHÌN SỐ</h1>
+        <p class="hero-desc" id="hero-desc">Giải pháp an ninh AI tiên phong, định hình lại cách thế giới quan sát và bảo vệ tài sản.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary btn-cut">Khám phá <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+          <button class="btn btn-outline btn-cut"><i data-lucide="play" class="w-4 h-4"></i> Demo Video</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="hero-nav">
+    <div class="hero-counter">
+      <span id="hero-current">01</span>
+      <span class="text-muted">/ 02</span>
+    </div>
+    <div class="hero-arrows">
+      <button class="hero-arrow btn-cut" id="hero-prev"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+      <button class="hero-arrow btn-cut" id="hero-next"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 2: CORE VALUES
+═══════════════════════════════════════════════════════════════════ -->
+<section class="values-section bg-tech-grid">
+  <div class="container">
+    <div class="values-header">
+      <div>
+        <p class="values-label">// CORE VALUES</p>
+        <h2 class="values-title font-display">Công nghệ<br><span>Định hình tương lai</span></h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="width:80px;height:1px;background:var(--border);"></div>
+        <p class="t-xs text-muted">High Performance Security</p>
+      </div>
+    </div>
+    
+    <div class="values-grid">
+      <?php
+      $values = [
+        ['icon' => 'aperture', 'title' => 'Siêu Thực', 'desc' => 'Cảm biến Sony Starvis 4K. Màu sắc sống động.', 'sub' => '01. SENSOR'],
+        ['icon' => 'cloud', 'title' => 'Tốc Độ', 'desc' => 'Server tại Việt Nam. Truy xuất dữ liệu tức thì.', 'sub' => '02. CLOUD'],
+        ['icon' => 'brain', 'title' => 'Trí Tuệ', 'desc' => 'AI Core tự học hỏi, phân biệt chính xác 99%.', 'sub' => '03. AI CORE'],
+        ['icon' => 'award', 'title' => 'Đẳng Cấp', 'desc' => 'Dịch vụ hỗ trợ 5 sao 24/7. Bảo hành tại nhà.', 'sub' => '04. SERVICE'],
+      ];
+      foreach ($values as $v): ?>
+      <div class="value-card cyber-cut">
+        <div class="value-card-inner">
+          <div class="value-card-top">
+            <div class="value-icon"><i data-lucide="<?= $v['icon'] ?>" class="w-6 h-6"></i></div>
+            <span class="value-sub"><?= $v['sub'] ?></span>
+          </div>
+          <div>
+            <h3 class="value-title font-display"><?= $v['title'] ?></h3>
+            <p class="value-desc"><?= $v['desc'] ?></p>
+          </div>
+        </div>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 3: HOOK
+═══════════════════════════════════════════════════════════════════ -->
+<section class="hook-section">
+  <div class="hook-content">
+    <h2 class="hook-title font-display">AN NINH <span>CHỦ ĐỘNG</span></h2>
+    <div class="hook-box btn-cut">
+      <p>"Ngăn chặn sự cố trước khi nó xảy ra"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 4: PHONE DEMO
+═══════════════════════════════════════════════════════════════════ -->
+<section class="demo-section">
+  <div class="container">
+    <div class="demo-header">
+      <div>
+        <p class="values-label">// REAL-TIME DEMO</p>
+        <h2 class="values-title font-display" style="font-size:clamp(24px,3vw,36px);">Tính năng thông minh</h2>
+      </div>
+      <div class="demo-tabs">
+        <button class="demo-tab btn-cut active" data-tab="0">1. FaceID</button>
+        <button class="demo-tab btn-cut" data-tab="1">2. Intrusion</button>
+        <button class="demo-tab btn-cut" data-tab="2">3. Behavior</button>
+        <button class="demo-tab btn-cut" data-tab="3">4. Heatmap</button>
+      </div>
+    </div>
+    
+    <div class="phone-frame cyber-cut">
+      <div class="phone-island">
+        <div class="phone-island-dot"></div>
+        <div style="width:5px;height:5px;background:#080808;border-radius:50%;"></div>
+      </div>
+      <div class="phone-screen" id="phone-screen">
+        <video src="https://videos.pexels.com/video-files/3252038/3252038-hd_1920_1080_25fps.mp4" poster="https://images.unsplash.com/photo-1563720223523-491ff04651de?q=80&w=2070" autoplay muted loop playsinline id="demo-video"></video>
+        <div class="phone-hud">
+          <div class="phone-hud-top">
+            <div class="phone-rec"><span class="phone-rec-dot"></span> REC</div>
+            <div class="phone-cam">CAM_01 // <span id="demo-time"></span></div>
+          </div>
+          <div class="phone-info">
+            <h4 id="demo-feature-title">FaceID Recog</h4>
+            <p id="demo-feature-desc">Nhận diện danh tính 99.8%</p>
+          </div>
+        </div>
+        <div class="phone-home"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 5: ZIGZAG FEATURES
+═══════════════════════════════════════════════════════════════════ -->
+<section class="zigzag-section">
+  <div class="container">
+    <div class="zigzag-row">
+      <div class="zigzag-img cyber-cut">
+        <img src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?q=80&w=2070" alt="Night Vision">
+      </div>
+      <div class="zigzag-content">
+        <span class="zigzag-num">01</span>
+        <h3 class="zigzag-title font-display">Night Vision Color</h3>
+        <p class="zigzag-desc">Thách thức bóng đêm. Cảm biến Sony Starvis thế hệ mới mang lại hình ảnh màu sắc nét ngay cả ở 0.001 Lux.</p>
+        <a class="zigzag-link">Technical Specs <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+    </div>
+    
+    <div class="zigzag-row reverse">
+      <div class="zigzag-img cyber-cut">
+        <img src="https://images.unsplash.com/photo-1587855049254-351f400c4a86?q=80&w=1974" alt="Protection">
+      </div>
+      <div class="zigzag-content">
+        <span class="zigzag-num">02</span>
+        <h3 class="zigzag-title font-display">IP67 & IK10 Protection</h3>
+        <p class="zigzag-desc">Bền bỉ như đá tảng. Thiết kế vỏ hợp kim nguyên khối chịu được va đập mạnh và thời tiết khắc nghiệt.</p>
+        <a class="zigzag-link">Technical Specs <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 6: PRODUCTS
+═══════════════════════════════════════════════════════════════════ -->
+<section class="products-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <p class="values-label">// ECOSYSTEM</p>
+      <h2 class="values-title font-display">Hệ sinh thái <span>TavaVision</span></h2>
+    </div>
+    
+    <div class="cyber-cut" style="background:var(--bg);border:1px solid var(--border);">
+      <div class="products-tabs">
+        <button class="product-tab btn-cut active" data-product="0">Tava AI Dome 5I</button>
+        <button class="product-tab btn-cut" data-product="1">Tava AI Bullet 5I</button>
+        <button class="product-tab btn-cut" data-product="2">Tava IQ3S Pro</button>
+      </div>
+      
+      <div class="product-showcase">
+        <div class="product-image bg-tech-grid">
+          <img src="https://images.unsplash.com/photo-1558002038-1091773817a0?q=80&w=2070" alt="Product" id="product-img">
+        </div>
+        <div class="product-info">
+          <p class="product-tagline" id="product-tagline">Refined Aesthetics</p>
+          <h3 class="product-name font-display" id="product-name">Tava AI Dome 5I</h3>
+          <p class="product-desc" id="product-desc">Thiết kế mái vòm tối giản. Sức mạnh AI ẩn giấu bên trong vẻ ngoài thanh lịch.</p>
+          <div class="product-specs" id="product-specs">
+            <div class="product-spec"><p class="product-spec-label">Lens</p><p class="product-spec-value">3.6 mm Fixed</p></div>
+            <div class="product-spec"><p class="product-spec-label">Resolution</p><p class="product-spec-value">5MP Super HD</p></div>
+            <div class="product-spec"><p class="product-spec-label">Protection</p><p class="product-spec-value">IP67 / IK10</p></div>
+            <div class="product-spec"><p class="product-spec-label">Night Vision</p><p class="product-spec-value">30m Smart IR</p></div>
+          </div>
+          <button class="btn btn-white btn-cut">Tải Datasheet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 7: APP
+═══════════════════════════════════════════════════════════════════ -->
+<section class="app-section">
+  <div class="container">
+    <div class="app-grid">
+      <div class="app-phone">
+        <div class="vertical-phone">
+          <div class="vertical-phone-island"></div>
+          <div class="vertical-phone-screen">
+            <img src="https://proce.vn/wp-content/uploads/2025/03/phong-hop-phong-chu-tich-1.jpg" alt="App">
+            <div class="vertical-phone-home"></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="app-badge"><i data-lucide="smartphone" class="w-4 h-4"></i> Mobile Control</div>
+        <h2 class="app-title font-display">Quyền lực trong <span>Tầm tay</span></h2>
+        <p class="app-desc">Kiểm soát toàn bộ hệ thống an ninh, nhận thông báo tức thì và xem lại lịch sử mọi lúc mọi nơi chỉ với một chạm.</p>
+        <div class="app-buttons">
+          <button class="btn btn-white btn-cut">App Store</button>
+          <button class="btn btn-outline btn-cut">Google Play</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 8: NEWS
+═══════════════════════════════════════════════════════════════════ -->
+<section class="news-section">
+  <div class="container">
+    <h2 class="news-title font-display">Tin tức & Sự kiện</h2>
+    <div class="news-grid">
+      <?php for ($i = 1; $i <= 3; $i++): ?>
+      <article class="news-card">
+        <div class="news-img cyber-cut">
+          <img src="https://picsum.photos/seed/<?= 50 + $i ?>/800/600" alt="News">
+        </div>
+        <p class="news-cat">Technology</p>
+        <h3 class="news-headline font-display">Giải pháp Camera AI cho chuỗi bán lẻ: Tối ưu vận hành</h3>
+        <a class="news-link">Đọc tiếp <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
+      </article>
+      <?php endfor; ?>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Lucide
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+  
+  // Hero Slider
+  const slides = [
+    { tagline: 'SYSTEM_ONLINE', title: 'KIẾN TẠO\nTẦM NHÌN SỐ', desc: 'Giải pháp an ninh AI tiên phong, định hình lại cách thế giới quan sát và bảo vệ tài sản.' },
+    { tagline: 'AI_CORE_ACTIVE', title: 'TRÍ TUỆ\nNHÂN TẠO LÕI', desc: 'Sức mạnh xử lý vượt trội tại biên (Edge Computing) với độ trễ xử lý gần như bằng không.' }
+  ];
+  let currentSlide = 0;
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  
+  function updateSlide(idx) {
+    heroSlides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    document.getElementById('hero-tagline').textContent = slides[idx].tagline;
+    document.getElementById('hero-title').textContent = slides[idx].title;
+    document.getElementById('hero-desc').textContent = slides[idx].desc;
+    document.getElementById('hero-current').textContent = String(idx + 1).padStart(2, '0');
+  }
+  
+  document.getElementById('hero-next').onclick = () => { currentSlide = (currentSlide + 1) % slides.length; updateSlide(currentSlide); };
+  document.getElementById('hero-prev').onclick = () => { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlide(currentSlide); };
+  
+  // Demo Tabs
+  const demoData = [
+    { title: 'FaceID Recog', desc: 'Nhận diện danh tính 99.8%', video: 'https://videos.pexels.com/video-files/3252038/3252038-hd_1920_1080_25fps.mp4' },
+    { title: 'Intrusion Alert', desc: 'Cảnh báo vùng cấm tức thì', video: 'https://videos.pexels.com/video-files/855564/855564-hd_1920_1080_30fps.mp4' },
+    { title: 'Behavior Analysis', desc: 'Phân tích hành vi bất thường', video: 'https://videos.pexels.com/video-files/3205626/3205626-hd_1920_1080_25fps.mp4' },
+    { title: 'Heatmap Data', desc: 'Vẽ bản đồ nhiệt mật độ', video: 'https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4' }
+  ];
+  
+  document.querySelectorAll('.demo-tab').forEach(tab => {
+    tab.onclick = function() {
+      const idx = parseInt(this.dataset.tab);
+      document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('demo-feature-title').textContent = demoData[idx].title;
+      document.getElementById('demo-feature-desc').textContent = demoData[idx].desc;
+      document.getElementById('demo-video').src = demoData[idx].video;
+    };
+  });
+  
+  // Update time
+  setInterval(() => {
+    const timeEl = document.getElementById('demo-time');
+    if (timeEl) timeEl.textContent = new Date().toLocaleTimeString();
+  }, 1000);
+  
+  // Product Tabs
+  const products = [
+    { name: 'Tava AI Dome 5I', tagline: 'Refined Aesthetics', desc: 'Thiết kế mái vòm tối giản. Sức mạnh AI ẩn giấu bên trong vẻ ngoài thanh lịch.', img: 'https://images.unsplash.com/photo-1558002038-1091773817a0?q=80&w=2070', specs: [['Lens','3.6 mm Fixed'],['Resolution','5MP Super HD'],['Protection','IP67 / IK10'],['Night Vision','30m Smart IR']] },
+    { name: 'Tava AI Bullet 5I', tagline: 'Outdoor Warrior', desc: 'Hợp kim hàng không nguyên khối. Bền bỉ trước mọi điều kiện thời tiết khắc nghiệt.', img: 'https://images.unsplash.com/photo-1587855049254-351f400c4a86?q=80&w=1974', specs: [['Lens','4.0 mm Pro'],['Resolution','5MP Super HD'],['Protection','IP67 Metal'],['Night Vision','50m Matrix IR']] },
+    { name: 'Tava IQ3S Pro', tagline: 'The Flagship', desc: 'Tích hợp Neural Processing Unit (NPU) riêng biệt. Khả năng học sâu thích nghi môi trường.', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470', specs: [['Lens','4x Optical Zoom'],['Resolution','4K Ultra HD'],['Protection','IP68 / IK10+'],['Night Vision','80m Laser']] }
+  ];
+  
+  document.querySelectorAll('.product-tab').forEach(tab => {
+    tab.onclick = function() {
+      const idx = parseInt(this.dataset.product);
+      document.querySelectorAll('.product-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      const p = products[idx];
+      document.getElementById('product-name').textContent = p.name;
+      document.getElementById('product-tagline').textContent = p.tagline;
+      document.getElementById('product-desc').textContent = p.desc;
+      document.getElementById('product-img').src = p.img;
+      const specsEl = document.getElementById('product-specs');
+      specsEl.innerHTML = p.specs.map(s => `<div class="product-spec"><p class="product-spec-label">${s[0]}</p><p class="product-spec-value">${s[1]}</p></div>`).join('');
+    };
+  });
+});
+</script>
 
 <?php get_footer(); ?>

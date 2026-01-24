@@ -264,6 +264,55 @@
                             Trang chủ
                         </a>
 
+                        <!-- Link: Tin tức -->
+                        <?php 
+                        $insights_page = get_page_by_path('tin-tuc');
+                        if (!$insights_page) $insights_page = get_page_by_path('insights');
+                        if (!$insights_page) $insights_page = get_page_by_path('news');
+                        ?>
+                        <a href="<?php echo $insights_page ? esc_url(get_permalink($insights_page->ID)) : esc_url(home_url('/tin-tuc')); ?>"
+                            class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full text-slate-700 hover:text-orange-600 hover:bg-orange-50 dark:text-white/90 dark:hover:text-white dark:hover:bg-orange-500/10">
+                            Tin tức
+                        </a>
+
+                        <!-- DROPDOWN: Về chúng tôi -->
+                        <div class="group relative h-full flex items-center">
+                            <button
+                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-slate-700 group-hover:text-orange-600 group-hover:bg-orange-50 dark:text-white/90 dark:group-hover:text-white dark:group-hover:bg-orange-500/10">
+                                Về chúng tôi <i data-lucide="chevron-down"
+                                    class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
+                            </button>
+                            <div
+                                class="absolute top-full left-0 w-64 bg-white dark:bg-slate-900 shadow-xl rounded-xl border border-gray-100 dark:border-gray-800 mt-2 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
+                                <div class="text-left">
+                                    <?php 
+                                    $about_page = get_page_by_path('ve-chung-toi');
+                                    if (!$about_page) $about_page = get_page_by_path('about');
+                                    if (!$about_page) $about_page = get_page_by_path('gioi-thieu');
+                                    ?>
+                                    <a href="<?php echo $about_page ? esc_url(get_permalink($about_page->ID)) : esc_url(home_url('/ve-chung-toi')); ?>"
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
+                                        <i data-lucide="info" class="w-4.5 h-4.5 text-slate-400"></i>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Giới thiệu</span>
+                                    </a>
+                                    <a href="<?php echo esc_url(home_url('/cong-nghe')); ?>"
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
+                                        <i data-lucide="cpu" class="w-4.5 h-4.5 text-slate-400"></i>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Công nghệ</span>
+                                    </a>
+                                    <?php 
+                                    $philosophy_page = get_page_by_path('triet-ly');
+                                    if (!$philosophy_page) $philosophy_page = get_page_by_path('philosophy');
+                                    ?>
+                                    <a href="<?php echo $philosophy_page ? esc_url(get_permalink($philosophy_page->ID)) : esc_url(home_url('/triet-ly')); ?>"
+                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
+                                        <i data-lucide="lightbulb" class="w-4.5 h-4.5 text-slate-400"></i>
+                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Triết lý</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- MEGA MENU: Sản phẩm -->
                         <div class="group h-full flex items-center">
                             <button
@@ -386,7 +435,11 @@
                                                     class="w-full h-full object-cover transform group-hover/banner:scale-105 transition duration-500 opacity-80 hover:opacity-100"
                                                     alt="New Camera" />
                                             </div>
-                                            <a href="#"
+                                            <?php 
+                                            $app_page = get_page_by_path('ung-dung-mobile');
+                                            if (!$app_page) $app_page = get_page_by_path('mobile-app');
+                                            ?>
+                                            <a href="<?php echo $app_page ? esc_url(get_permalink($app_page->ID)) : esc_url(home_url('/ung-dung-mobile')); ?>"
                                                 class="text-xs font-bold text-orange-600 flex items-center gap-1 hover:gap-2 transition-all">Xem
                                                 chi tiết <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
                                         </div>
@@ -402,9 +455,13 @@
                                                 <h4 class="font-bold text-lg mb-2">Tava VMS Platform</h4>
                                                 <p class="text-xs text-slate-400 mb-6 leading-relaxed">Phần mềm quản trị
                                                     tập trung hàng ngàn thiết bị trên một giao diện duy nhất.</p>
-                                                <button
-                                                    class="w-full py-2 bg-white text-slate-900 text-xs font-bold rounded hover:bg-orange-50 transition">Đăng
-                                                    ký Demo</button>
+                                                <?php 
+                                                $philosophy_page = get_page_by_path('triet-ly');
+                                                if (!$philosophy_page) $philosophy_page = get_page_by_path('philosophy');
+                                                ?>
+                                                <a href="<?php echo $philosophy_page ? esc_url(get_permalink($philosophy_page->ID)) : esc_url(home_url('/triet-ly')); ?>"
+                                                    class="block w-full py-2 bg-white text-slate-900 text-xs font-bold rounded hover:bg-orange-50 transition text-center">Tìm hiểu
+                                                    thêm</a>
                                             </div>
                                             <div
                                                 class="absolute top-0 right-0 w-32 h-32 bg-orange-500 rounded-full blur-[60px] opacity-20">
@@ -426,8 +483,49 @@
                             <div
                                 class="absolute top-full left-0 w-full bg-white dark:bg-slate-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
                                 <div class="container mx-auto p-8">
-                                    <div class="grid grid-cols-4 gap-8 text-left">
-                                        <a href="#"
+                                    <div class="grid grid-cols-3 gap-6 text-left">
+                                        <!-- Cá nhân -->
+                                        <a href="<?php echo esc_url(home_url('/giai-phap-ca-nhan')); ?>"
+                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-pink-100 dark:hover:border-pink-500/30">
+                                            <div
+                                                class="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-pink-600 group-hover/card:text-white transition">
+                                                <i data-lucide="user" class="w-6 h-6"></i>
+                                            </div>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Cá nhân
+                                            </h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Giải pháp an ninh cho gia đình và nhà riêng.</p>
+                                        </a>
+                                        
+                                        <!-- Doanh nghiệp -->
+                                        <a href="<?php echo esc_url(home_url('/giai-phap-doanh-nghiep')); ?>"
+                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-indigo-100 dark:hover:border-indigo-500/30">
+                                            <div
+                                                class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-indigo-600 group-hover/card:text-white transition">
+                                                <i data-lucide="briefcase" class="w-6 h-6"></i>
+                                            </div>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Doanh nghiệp
+                                            </h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Hệ thống giám sát toàn diện cho công ty.</p>
+                                        </a>
+                                        
+                                        <!-- Mobile App -->
+                                        <?php 
+                                        $app_page = get_page_by_path('ung-dung-mobile');
+                                        if (!$app_page) $app_page = get_page_by_path('mobile-app');
+                                        ?>
+                                        <a href="<?php echo $app_page ? esc_url(get_permalink($app_page->ID)) : esc_url(home_url('/ung-dung-mobile')); ?>"
+                                            class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-cyan-100 dark:hover:border-cyan-500/30">
+                                            <div
+                                                class="w-12 h-12 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-cyan-600 group-hover/card:text-white transition">
+                                                <i data-lucide="smartphone" class="w-6 h-6"></i>
+                                            </div>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Mobile App
+                                            </h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Quản lý camera mọi lúc mọi nơi.</p>
+                                        </a>
+                                        
+                                        <!-- Bán lẻ & Chuỗi -->
+                                        <a href="<?php echo esc_url(home_url('/giai-phap-ban-le')); ?>"
                                             class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-orange-100 dark:hover:border-orange-500/30">
                                             <div
                                                 class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-orange-600 group-hover/card:text-white transition">
@@ -435,78 +533,47 @@
                                             </div>
                                             <h4 class="font-bold text-slate-900 dark:text-white mb-1">Bán lẻ & Chuỗi
                                             </h4>
-                                            <p class="text-xs text-slate-500 dark:text-slate-400">Đếm người, Heatmap,
-                                                quản lý quầy thu ngân.</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Đếm người, Heatmap, quản lý quầy thu ngân.</p>
                                         </a>
-                                        <a href="#"
+                                        
+                                        <!-- Nhà máy & KCN -->
+                                        <a href="<?php echo esc_url(home_url('/giai-phap-nha-may')); ?>"
                                             class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-blue-100 dark:hover:border-blue-500/30">
                                             <div
                                                 class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-blue-600 group-hover/card:text-white transition">
                                                 <i data-lucide="factory" class="w-6 h-6"></i>
                                             </div>
                                             <h4 class="font-bold text-slate-900 dark:text-white mb-1">Nhà máy & KCN</h4>
-                                            <p class="text-xs text-slate-500 dark:text-slate-400">Kiểm soát ra vào, an
-                                                toàn lao động, hàng rào ảo.</p>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Kiểm soát ra vào, an toàn lao động, hàng rào ảo.</p>
                                         </a>
-                                        <a href="#"
+                                        
+                                        <!-- Ngân hàng & Tài chính -->
+                                        <a href="<?php echo esc_url(home_url('/giai-phap-ngan-hang')); ?>"
                                             class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-green-100 dark:hover:border-green-500/30">
                                             <div
                                                 class="w-12 h-12 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-green-600 group-hover/card:text-white transition">
                                                 <i data-lucide="landmark" class="w-6 h-6"></i>
                                             </div>
-                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Ngân hàng & Tài
-                                                chính</h4>
-                                            <p class="text-xs text-slate-500 dark:text-slate-400">Nhận diện
-                                                VIP/Blacklist, an ninh kho quỹ.</p>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Ngân hàng & Tài chính</h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Nhận diện VIP/Blacklist, an ninh kho quỹ.</p>
                                         </a>
-                                        <a href="#"
+                                        
+                                        <!-- Giao thông thông minh -->
+                                        <a href="<?php echo esc_url(home_url('/giai-phap-giao-thong')); ?>"
                                             class="group/card block p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition border border-transparent hover:border-purple-100 dark:hover:border-purple-500/30">
                                             <div
                                                 class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg flex items-center justify-center mb-4 group-hover/card:bg-purple-600 group-hover/card:text-white transition">
                                                 <i data-lucide="truck" class="w-6 h-6"></i>
                                             </div>
-                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Giao thông thông
-                                                minh</h4>
-                                            <p class="text-xs text-slate-500 dark:text-slate-400">Đọc biển số, phát hiện
-                                                vi phạm, giám sát bãi xe.</p>
+                                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Giao thông thông minh</h4>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Đọc biển số, phát hiện vi phạm, giám sát bãi xe.</p>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- DROPDOWN: Công nghệ -->
-                        <div class="group relative h-full flex items-center">
-                            <button
-                                class="nav-link-item relative px-4 py-2 text-[14px] font-bold uppercase tracking-wide transition-colors rounded-full flex items-center gap-1 text-slate-700 group-hover:text-orange-600 group-hover:bg-orange-50 dark:text-white/90 dark:group-hover:text-white dark:group-hover:bg-orange-500/10">
-                                Công nghệ <i data-lucide="chevron-down"
-                                    class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
-                            </button>
-                            <div
-                                class="absolute top-full left-0 w-64 bg-white dark:bg-slate-900 shadow-xl rounded-xl border border-gray-100 dark:border-gray-800 mt-2 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
-                                <div class="text-left">
-                                    <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
-                                        <i data-lucide="cpu" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span
-                                            class="text-sm font-semibold text-slate-700 dark:text-slate-200">TavaVision
-                                            AI Core</span>
-                                    </a>
-                                    <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
-                                        <i data-lucide="cloud" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Cloud
-                                            Platform</span>
-                                    </a>
-                                    <a href="#"
-                                        class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-white/5 rounded-lg transition">
-                                        <i data-lucide="lock" class="w-4.5 h-4.5 text-slate-400"></i>
-                                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Bảo mật
-                                            dữ liệu</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <!-- DROPDOWN: Hỗ trợ -->
                         <div class="group relative h-full flex items-center">
@@ -572,3 +639,144 @@
                 </div>
             </div>
         </header><!-- #masthead -->
+
+        <!-- Mobile Menu Sidebar -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-[100] lg:hidden">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            
+            <!-- Menu Sidebar -->
+            <div class="absolute right-0 top-0 h-full w-[300px] bg-white dark:bg-slate-900 shadow-2xl flex flex-col">
+                <!-- Header -->
+                <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-800">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-orange-600 rounded flex items-center justify-center">
+                            <i data-lucide="scan" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="font-bold text-lg text-slate-900 dark:text-white">Menu</span>
+                    </div>
+                    <button onclick="document.getElementById('mobile-menu').classList.add('hidden')" 
+                            class="w-8 h-8 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Menu Items -->
+                <nav class="flex-1 overflow-y-auto p-6">
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="<?php echo esc_url(home_url('/')); ?>" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-600 dark:hover:text-orange-500 transition font-semibold">
+                                <i data-lucide="home" class="w-5 h-5"></i>
+                                <span>Trang chủ</span>
+                            </a>
+                        </li>
+                        
+                        <?php 
+                        $about_page = get_page_by_path('ve-chung-toi');
+                        if (!$about_page) $about_page = get_page_by_path('about');
+                        ?>
+                        <li>
+                            <a href="<?php echo $about_page ? esc_url(get_permalink($about_page->ID)) : esc_url(home_url('/ve-chung-toi')); ?>" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-600 dark:hover:text-orange-500 transition font-semibold">
+                                <i data-lucide="info" class="w-5 h-5"></i>
+                                <span>Về chúng tôi</span>
+                            </a>
+                        </li>
+                        
+                        <?php 
+                        $insights_page = get_page_by_path('tin-tuc');
+                        if (!$insights_page) $insights_page = get_page_by_path('insights');
+                        ?>
+                        <li>
+                            <a href="<?php echo $insights_page ? esc_url(get_permalink($insights_page->ID)) : esc_url(home_url('/tin-tuc')); ?>" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-600 dark:hover:text-orange-500 transition font-semibold">
+                                <i data-lucide="newspaper" class="w-5 h-5"></i>
+                                <span>Tin tức</span>
+                            </a>
+                        </li>
+                        
+                        <?php 
+                        $app_page = get_page_by_path('ung-dung-mobile');
+                        if (!$app_page) $app_page = get_page_by_path('mobile-app');
+                        if (!$app_page) $app_page = get_page_by_path('app');
+                        ?>
+                        <li>
+                            <a href="<?php echo $app_page ? esc_url(get_permalink($app_page->ID)) : esc_url(home_url('/ung-dung-mobile')); ?>" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-600 dark:hover:text-orange-500 transition font-semibold">
+                                <i data-lucide="smartphone" class="w-5 h-5"></i>
+                                <span>Mobile App</span>
+                            </a>
+                        </li>
+                        
+                        <?php 
+                        $philosophy_page = get_page_by_path('triet-ly');
+                        if (!$philosophy_page) $philosophy_page = get_page_by_path('philosophy');
+                        if (!$philosophy_page) $philosophy_page = get_page_by_path('triet-ly-san-pham');
+                        ?>
+                        <li>
+                            <a href="<?php echo $philosophy_page ? esc_url(get_permalink($philosophy_page->ID)) : esc_url(home_url('/triet-ly')); ?>" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-600 dark:hover:text-orange-500 transition font-semibold">
+                                <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                                <span>Triết Lý</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <div class="px-4 py-2 text-xs font-bold uppercase text-slate-400 dark:text-slate-500 tracking-wider mt-4 mb-2">Sản phẩm</div>
+                        </li>
+                        
+                        <li>
+                            <a href="#" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/5 transition">
+                                <i data-lucide="eye" class="w-4 h-4 text-orange-500"></i>
+                                <span class="text-sm">Camera Thông Minh</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/5 transition">
+                                <i data-lucide="box" class="w-4 h-4 text-blue-500"></i>
+                                <span class="text-sm">Lưu trữ & Hiển thị</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <div class="px-4 py-2 text-xs font-bold uppercase text-slate-400 dark:text-slate-500 tracking-wider mt-4 mb-2">Giải pháp</div>
+                        </li>
+                        
+                        <li>
+                            <a href="#" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/5 transition">
+                                <i data-lucide="shopping-cart" class="w-4 h-4 text-orange-500"></i>
+                                <span class="text-sm">Bán lẻ & Chuỗi</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" 
+                               class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/5 transition">
+                                <i data-lucide="factory" class="w-4 h-4 text-blue-500"></i>
+                                <span class="text-sm">Nhà máy & KCN</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Footer Actions -->
+                <div class="p-6 border-t border-gray-200 dark:border-gray-800 space-y-3">
+                    <button onclick="toggleTheme()" 
+                            class="w-full px-4 py-3 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center gap-2 font-semibold">
+                        <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                        <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                        <span>Chế độ tối</span>
+                    </button>
+                    <a href="tel:19006600" 
+                       class="block w-full px-4 py-3 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg hover:from-orange-700 hover:to-orange-600 transition text-center font-bold flex items-center justify-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        <span>Hotline: 1900 6600</span>
+                    </a>
+                </div>
+            </div>
+        </div>
