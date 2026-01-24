@@ -218,27 +218,56 @@
             handleScroll(); // Check on load
         }
         
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle - IMPROVED
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = mobileMenu?.querySelector('button[onclick*="classList.add"]');
         
         if (mobileMenuToggle && mobileMenu) {
-            mobileMenuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('flex');
+            // Toggle mobile menu
+            mobileMenuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = mobileMenu.classList.contains('hidden');
                 
-                // Add animation
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.style.animation = 'slideInRight 0.3s ease-out';
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex');
+                    document.body.style.overflow = 'hidden'; // Prevent scroll
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    document.body.style.overflow = ''; // Restore scroll
                 }
             });
             
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            // Close button inside menu
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
                     mobileMenu.classList.remove('flex');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Close when clicking backdrop (not the sidebar)
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    document.body.style.overflow = '';
                 }
+            });
+            
+            // Close when clicking any menu link
+            const menuLinks = mobileMenu.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                        document.body.style.overflow = '';
+                    }, 150);
+                });
             });
         }
     });

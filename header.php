@@ -48,6 +48,9 @@
         }
     </script>
     <?php wp_head(); ?>
+    
+    <!-- Mobile Critical Fixes - Load LAST to override Tailwind -->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/mobile-critical.css?v=1.4">
     <style>
         /* Scrolled State Overrides */
         /* Light Mode Scrolled */
