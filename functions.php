@@ -68,10 +68,13 @@ add_action('after_setup_theme', 'tavacam_setup');
 function tavacam_scripts()
 {
     // Main stylesheet
-    wp_enqueue_style('tavacam-style', get_stylesheet_uri(), array(), '1.3');
+    wp_enqueue_style('tavacam-style', get_stylesheet_uri(), array(), '1.4');
 
     // Custom Animations
-    wp_enqueue_style('tavacam-animations', get_template_directory_uri() . '/animations.css', array(), '1.3');
+    wp_enqueue_style('tavacam-animations', get_template_directory_uri() . '/animations.css', array(), '1.4');
+
+    // Responsive Optimization (load after main styles)
+    wp_enqueue_style('tavacam-responsive', get_template_directory_uri() . '/responsive.css', array('tavacam-style'), '1.4');
 
     // Google Fonts - Inter & Share Tech Mono
     wp_enqueue_style(

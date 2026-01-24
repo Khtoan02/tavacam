@@ -1,0 +1,452 @@
+/**
+ * TavaCam Responsive Optimization
+ * Version: 1.0
+ * Mobile-first approach with optimized spacing and typography
+ */
+
+/* ============================================
+   MOBILE FONT OPTIMIZATION (< 640px)
+   ============================================ */
+
+/* Base font size - smaller for mobile to fit more content */
+@media (max-width: 640px) {
+    body {
+        font-size: 14px !important;
+        line-height: 1.5;
+    }
+
+    /* Reduce all heading sizes proportionally */
+    h1, .h1 {
+        font-size: 1.75rem !important; /* 28px */
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    h2, .h2 {
+        font-size: 1.5rem !important; /* 24px */
+        line-height: 1.25;
+        margin-bottom: 0.875rem;
+    }
+
+    h3, .h3 {
+        font-size: 1.25rem !important; /* 20px */
+        line-height: 1.3;
+        margin-bottom: 0.75rem;
+    }
+
+    h4, .h4 {
+        font-size: 1.125rem !important; /* 18px */
+        line-height: 1.35;
+        margin-bottom: 0.625rem;
+    }
+
+    h5, .h5, h6, .h6 {
+        font-size: 1rem !important; /* 16px */
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Section titles */
+    .section-title {
+        font-size: 1.875rem !important; /* 30px */
+        line-height: 1.15;
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.625rem !important; /* 10px */
+        letter-spacing: 0.15em;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ============================================
+   MOBILE SPACING OPTIMIZATION (< 640px)
+   ============================================ */
+
+@media (max-width: 640px) {
+    /* Container padding - reduce from default */
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Section spacing - reduce vertical padding */
+    section, .section {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+
+    /* Card/Box padding */
+    .card, .box, [class*="bg-white"], [class*="bg-slate"] {
+        padding: 1rem !important;
+    }
+
+    /* Gap utilities - reduce to fit more content */
+    .gap-8 {
+        gap: 1rem !important;
+    }
+
+    .gap-6 {
+        gap: 0.75rem !important;
+    }
+
+    .gap-4 {
+        gap: 0.5rem !important;
+    }
+
+    /* Margin utilities */
+    .mb-12, .my-12 {
+        margin-bottom: 2rem !important;
+    }
+
+    .mb-10, .my-10 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .mb-8, .my-8 {
+        margin-bottom: 1.25rem !important;
+    }
+
+    .mt-16 {
+        margin-top: 2.5rem !important;
+    }
+
+    .mt-12 {
+        margin-top: 2rem !important;
+    }
+}
+
+/* ============================================
+   HEADER MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 640px) {
+    /* Top bar - hide or compress */
+    #masthead .top-bar {
+        font-size: 9px !important;
+        padding-top: 0.375rem !important;
+        padding-bottom: 0.375rem !important;
+    }
+
+    /* Main navbar height */
+    #masthead .container {
+        height: 60px !important;
+    }
+
+    /* Logo size */
+    #masthead .logo-box {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+
+    #masthead .logo-text-primary {
+        font-size: 1.125rem !important; /* 18px */
+    }
+
+    #masthead .logo-subtext {
+        font-size: 7px !important;
+        letter-spacing: 0.15em;
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn {
+        padding: 0.5rem !important;
+    }
+}
+
+/* ============================================
+   FOOTER MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 640px) {
+    #colophon {
+        padding-top: 2.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    /* Footer grid */
+    #colophon .grid {
+        gap: 1.5rem !important;
+    }
+
+    /* Footer headings */
+    #colophon h3 {
+        font-size: 0.875rem !important; /* 14px */
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Footer text */
+    #colophon p, #colophon a {
+        font-size: 0.75rem !important; /* 12px */
+        line-height: 1.4;
+    }
+
+    /* Footer quick contact */
+    #colophon .bg-gray-50 {
+        padding: 0.875rem !important;
+    }
+}
+
+/* ============================================
+   CONTENT MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 640px) {
+    /* Blog grid */
+    .grid.grid-cols-3,
+    .grid.grid-cols-2 {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    /* Article cards */
+    article .entry-header h2 {
+        font-size: 1.125rem !important; /* 18px */
+    }
+
+    article .entry-content {
+        font-size: 0.875rem !important; /* 14px */
+    }
+
+    /* Buttons */
+    .btn-primary, button, .button {
+        padding: 0.625rem 1.25rem !important;
+        font-size: 0.75rem !important; /* 12px */
+    }
+
+    /* Images - ensure responsive */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* ============================================
+   MOBILE MENU SIDEBAR
+   ============================================ */
+
+@media (max-width: 640px) {
+    #mobile-menu .w-\[300px\] {
+        width: 280px !important;
+    }
+
+    #mobile-menu .p-6 {
+        padding: 1rem !important;
+    }
+
+    #mobile-menu .px-4 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+
+    #mobile-menu .py-3 {
+        padding-top: 0.625rem !important;
+        padding-bottom: 0.625rem !important;
+    }
+
+    #mobile-menu .text-sm {
+        font-size: 0.8125rem !important; /* 13px */
+    }
+
+    #mobile-menu .text-lg {
+        font-size: 1rem !important; /* 16px */
+    }
+}
+
+/* ============================================
+   404 PAGE MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 640px) {
+    #camera-404-container .p-8 {
+        padding: 1rem !important;
+    }
+
+    #camera-404-container .text-6xl {
+        font-size: 3rem !important; /* 48px */
+    }
+
+    #camera-404-container .text-lg {
+        font-size: 0.875rem !important;
+    }
+
+    #camera-404-container .w-64 {
+        width: 240px !important;
+    }
+
+    #camera-404-container .h-64 {
+        height: 240px !important;
+    }
+}
+
+/* ============================================
+   TABLET OPTIMIZATION (641px - 1023px)
+   ============================================ */
+
+@media (min-width: 641px) and (max-width: 1023px) {
+    body {
+        font-size: 14.5px;
+    }
+
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    section, .section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    /* Adjust grid for tablet */
+    .grid.grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* ============================================
+   UTILITY CLASSES FOR CONTENT DENSITY
+   ============================================ */
+
+@media (max-width: 640px) {
+    /* Compact mode - use these classes for tighter spacing */
+    .mobile-compact {
+        padding: 0.5rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Hide on mobile to save space */
+    .mobile-hidden {
+        display: none !important;
+    }
+
+    /* Stack elements on mobile */
+    .mobile-stack > * {
+        width: 100% !important;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Reduce image sizes */
+    .mobile-img-sm img {
+        max-height: 150px !important;
+        object-fit: cover;
+    }
+
+    .mobile-img-md img {
+        max-height: 200px !important;
+        object-fit: cover;
+    }
+}
+
+/* ============================================
+   TYPOGRAPHY CONSISTENCY
+   ============================================ */
+
+/* Ensure Inter font is used consistently */
+body, button, input, select, textarea {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 
+                 'Segoe UI', Roboto, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Monospace for code and specific elements */
+code, pre, .font-mono, .font-tech {
+    font-family: 'Share Tech Mono', 'Courier New', monospace !important;
+}
+
+/* ============================================
+   TOUCH-FRIENDLY OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 640px) {
+    /* Increase touch target size */
+    a, button, input, select, textarea {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Better spacing for clickable elements */
+    nav a, .menu a {
+        padding: 0.75rem 1rem !important;
+    }
+
+    /* Form elements */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+        font-size: 16px !important; /* Prevent zoom on iOS */
+        padding: 0.75rem !important;
+    }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Reduce animations on mobile for better performance */
+@media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.2s !important;
+    }
+
+    .animate-spin,
+    .animate-pulse,
+    [class*="animate-"] {
+        animation-duration: 0.5s !important;
+    }
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+    *:hover {
+        transform: none !important;
+    }
+
+    .hover\:scale-105:hover {
+        transform: scale(1) !important;
+    }
+}
+
+/* ============================================
+   DARK MODE MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 640px) {
+    .dark body {
+        background-color: #0f172a;
+    }
+
+    /* Increase contrast for better readability on small screens */
+    .dark .text-slate-400 {
+        color: #cbd5e1 !important;
+    }
+
+    .dark .text-slate-500 {
+        color: #94a3b8 !important;
+    }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE (max-height: 500px)
+   ============================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    /* Reduce header height in landscape */
+    #masthead .container {
+        height: 50px !important;
+    }
+
+    #masthead .top-bar {
+        display: none !important;
+    }
+
+    /* Reduce section padding */
+    section, .section {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+}
